@@ -18,7 +18,7 @@ import User from './models/user';
 const app = express();
 const server = http.createServer(app);
 
-const allowlist = ["http://localhost:3000", 'https://tradexquant.com', 'https://www.tradexquant.com', 'https://app.tradexquant.com'];
+const allowlist = ['https://tradexquant.com', 'https://www.tradexquant.com', 'https://app.tradexquant.com'];
 
 const corsOptionsDelegate = (req, callback) => {
     let corsOptions;
