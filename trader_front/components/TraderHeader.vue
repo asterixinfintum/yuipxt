@@ -1,8 +1,8 @@
 <template>
   <div>
     <div class="trader__escalator">
-      <HeaderAnnouncement :announcement="announcements[0]" />
-      <CurrencyEscalator />
+      <!--<HeaderAnnouncement :announcement="announcements[0]" />-->
+      <!--<CurrencyEscalator />-->
     </div>
     <div class="trader__header">
       <div class="trader__header--area">
