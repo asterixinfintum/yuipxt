@@ -4,7 +4,7 @@ let socket;
 let BASE_URL;
 let DEVELOPMENT;
 
-DEVELOPMENT = true;
+DEVELOPMENT = false;
 
 if (DEVELOPMENT) {
     BASE_URL = 'http://localhost:8083';
