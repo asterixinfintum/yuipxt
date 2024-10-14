@@ -24,7 +24,8 @@ asset.get('/assets/', /*#__PURE__*/function () {
           return _asset3["default"].find({});
         case 3:
           assets = _context.sent;
-          assetlist = []; //console.log(assets)
+          assetlist = [];
+          console.log('assets:', assets);
           assets.forEach(function (_ref2) {
             var _id = _ref2._id,
               name = _ref2.name,
@@ -50,20 +51,20 @@ asset.get('/assets/', /*#__PURE__*/function () {
           res.status(200).json({
             assets: assetlist
           });
-          _context.next = 13;
+          _context.next = 14;
           break;
-        case 9:
-          _context.prev = 9;
+        case 10:
+          _context.prev = 10;
           _context.t0 = _context["catch"](0);
           console.error('Error retrieving assets:', _context.t0);
           res.status(500).json({
             error: 'An error occurred while retrieving assets'
           });
-        case 13:
+        case 14:
         case "end":
           return _context.stop();
       }
-    }, _callee, null, [[0, 9]]);
+    }, _callee, null, [[0, 10]]);
   }));
   return function (_x, _x2) {
     return _ref.apply(this, arguments);

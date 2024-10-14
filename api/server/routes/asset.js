@@ -10,7 +10,7 @@ asset.get('/assets/', async (req, res) => {
         const assets = await Asset.find({});
         const assetlist = []
 
-        //console.log(assets)
+        console.log('assets:', assets)
 
         assets.forEach(({ _id, name, coin, symbol, assetType, price, image, listed }) => {
             if (listed) {
