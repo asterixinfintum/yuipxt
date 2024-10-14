@@ -42,13 +42,13 @@
           </svg>
         </div>
 
-        <div class="header__logo" v-if="client" @click="$router.push('/overview')">
+        <div class="header__logo" v-if="client" @click="routeToHomeTrade">
           <figure class="tradex-logo-headr">
             <img src="@/assets/imgs/logo_psb.png" />
           </figure>
           <p>Tradex Quant</p>
         </div>
-        <div class="header__logo" v-if="!client" @click="$router.push('/')">
+        <div class="header__logo" v-if="!client" @click="routeToHomeTrade">
           <figure class="tradex-logo-headr">
             <img src="@/assets/imgs/logo_psb.png" />
           </figure>
@@ -556,6 +556,10 @@ export default {
       if (dropdown) {
         dropdown.classList.toggle("visible", !dropdown.classList.contains("visible"));
       }
+    },
+    routeToHomeTrade() {
+      const url = "https://app.tradexquant.com";
+      window.location.href = `${url}/`;
     },
   },
   mounted() {

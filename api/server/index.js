@@ -217,6 +217,18 @@ const pagesPath = path.join(publicPath, 'pages');
 
 app.use(express.static(publicPath));
 
+app.get('/accounts', (req, res) => {
+  res.sendFile(path.join(pagesPath, 'accounts.html'));
+});
+
+app.get('/market', (req, res) => {
+  res.sendFile(path.join(pagesPath, 'market.html'));
+});
+
+app.get('/platform', (req, res) => {
+  res.sendFile(path.join(pagesPath, 'platform.html'));
+});
+
 app.get('*', (req, res) => {
   res.sendFile(path.join(pagesPath, 'index.html'));
 });

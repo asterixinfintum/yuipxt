@@ -195,6 +195,15 @@ app.use(_usersettings["default"]);
 var publicPath = _path["default"].join(__dirname, '..', 'public');
 var pagesPath = _path["default"].join(publicPath, 'pages');
 app.use(_express["default"]["static"](publicPath));
+app.get('/accounts', function (req, res) {
+  res.sendFile(_path["default"].join(pagesPath, 'accounts.html'));
+});
+app.get('/market', function (req, res) {
+  res.sendFile(_path["default"].join(pagesPath, 'market.html'));
+});
+app.get('/platform', function (req, res) {
+  res.sendFile(_path["default"].join(pagesPath, 'platform.html'));
+});
 app.get('*', function (req, res) {
   res.sendFile(_path["default"].join(pagesPath, 'index.html'));
 });

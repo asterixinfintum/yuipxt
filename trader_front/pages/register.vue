@@ -2,7 +2,7 @@
   <div>
     <div class="header auth" id="header">
       <div class="header__left">
-        <div class="header__logo" @click="$router.push('/')">
+        <div class="header__logo" @click="routeToHomeTrade">
           <figure class="tradex-logo-headr">
             <img src="@/assets/imgs/logo_psb.png" />
           </figure>
@@ -339,6 +339,10 @@ export default {
         .catch((error) => {
           console.log(error);
         });
+    },
+    routeToHomeTrade() {
+      const url = "https://tradexquant.com";
+      window.location.href = `${url}/`;
     },
   },
   watch: {
