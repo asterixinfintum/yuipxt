@@ -1,0 +1,155 @@
+.assetscontainer {
+
+    &__header {
+        display: flex;
+        margin-bottom: #{scaleValue(20)};
+    }
+
+    &__checkboxarea {
+        display: flex;
+        align-items: center;
+        margin-right: #{scaleValue(30)};
+
+        & span {
+            display: flex;
+            align-items: center;
+            margin-right: #{scaleValue(10)};
+            font-size: #{scaleValue(12)};
+            color: $neon-blue;
+
+            &:nth-child(2) {
+                transform: translateY(#{scaleValue(.5)});
+            }
+        }
+    }
+
+    &__searcharea {
+        border: $border;
+        border-radius: #{scaleValue(6)};
+        display: flex;
+        align-items: center;
+        height: #{scaleValue(38)};
+        padding-left: #{scaleValue(13)};
+        margin-bottom: #{scaleValue(20)};
+
+        & input {
+            border: none;
+            outline: none;
+            height: 100%;
+            background: transparent;
+            width: 100%;
+            padding-right: #{scaleValue(13)};
+            color: $white;
+            font-size: #{scaleValue(14)};
+        }
+    }
+
+    &__headeritm {
+        margin-right: #{scaleValue(40)};
+        cursor: pointer;
+        font-size: #{scaleValue(13)};
+
+        &.current {
+            color: $usdt-green;
+        }
+    }
+
+    &__listbody {
+        margin-top: #{scaleValue(30)};
+    }
+
+    &__listbodyitem {
+        display: flex;
+        margin-bottom: #{scaleValue(20)};
+        flex-direction: column;
+        padding: #{scaleValue(20)};
+        border-bottom: 1px solid rgba($neon-green, 0.4);
+        font-size: #{scaleValue(13)};
+        background: rgba($primary-color, 0.1);
+        position: relative;
+
+        border-radius: #{scaleValue(4)};
+
+        & figure {
+            height: #{scaleValue(20)};
+            width: #{scaleValue(20)};
+            border-radius: 100%;
+            margin-right: #{scaleValue(20)};
+            overflow: hidden;
+
+            & img {
+                object-fit: contain;
+                height: 100%;
+                width: 100%;
+            }
+        }
+
+        &--name {
+            color: $neon-green;
+            margin-right: #{scaleValue(10)};
+        }
+
+        &--coin {
+            margin-right: #{scaleValue(30)};
+        }
+
+        &--top {
+            display: flex;
+            align-items: center;
+        }
+
+        &--bottom {
+            display: flex;
+            align-items: center;
+            margin-top: #{scaleValue(15)};
+        }
+
+        &--buttons {
+            display: flex;
+            align-items: center;
+            margin-top: #{scaleValue(15)};
+
+            justify-content: flex-end;
+
+            & button {
+                margin-left: #{scaleValue(25)};
+                cursor: pointer;
+                padding: #{scaleValue(10)} #{scaleValue(30)};
+                font-size: #{scaleValue(12)};
+
+                transition: all 0.5s ease;
+                background: rgba($landing-primary, 0.3) !important;
+
+                &.viewpairs {
+                    color: $neon-blue;
+                }
+
+                &.delist {
+                    background: rgba($landing-primary, 0.3) !important;
+                    color: $neon-orange;
+                }
+
+                &.relist {
+                    background: rgba($landing-primary, 0.3) !important;
+                    color: $usdt-green;
+                }
+
+                &:hover {
+                    background: rgba($landing-primary, 0.7) !important;
+                }
+            }
+        }
+
+        &--price {
+            margin-right: #{scaleValue(30)};
+        }
+
+        &--symbol {
+            margin-right: #{scaleValue(30)};
+        }
+
+        &--listed {
+            margin-right: #{scaleValue(30)};
+        }
+    }
+}

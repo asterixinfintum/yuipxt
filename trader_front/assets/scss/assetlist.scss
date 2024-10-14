@@ -1,0 +1,236 @@
+.assetlist {
+    overflow: hidden;
+
+    @media only screen and (max-width: 414px) {
+        overflow-x: scroll;
+        overflow-y: hidden;
+        width: #{scaleValue(1500)};
+    }
+
+    &__item {
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid rgba($neon-green, 0.4);
+        padding: #{scaleValue(12)} #{scaleValue(16)};
+        cursor: pointer;
+        transition: all .2s ease;
+
+        overflow: hidden;
+
+        @media only screen and (max-width: 414px) {
+            width: #{scaleValue(4000)};
+        }
+
+        &.fiatandspot {}
+
+        &:hover {
+            background: $light-black;
+        }
+    }
+
+    &__area {
+        display: flex;
+        align-items: center;
+
+        &--assetlogo {
+            width: #{scaleValue(20)};
+            height: #{scaleValue(20)};
+            overflow: hidden;
+            margin-right: #{scaleValue(19)};
+            border-radius: 100%;
+
+            @media only screen and (max-width: 414px) {
+                width: #{scaleValue(100)};
+                height: #{scaleValue(100)};
+            }
+
+            & img {
+                height: 100%;
+                width: 100%;
+                object-fit: contain;
+            }
+        }
+
+        &.fiatandspot {
+
+            &:not(:last-child) {
+                width: #{scaleValue(165)};
+
+                @media only screen and (max-width: 414px) {
+                    width: #{scaleValue(500)};
+                }
+            }
+        }
+
+        &.margin {
+
+            &:not(:last-child) {
+                width: #{scaleValue(140)};
+
+                @media only screen and (max-width: 414px) {
+                    width: #{scaleValue(500)};
+                }
+            }
+        }
+
+        &.number-value {
+            font-size: #{scaleValue(12)};
+            overflow: hidden;
+
+            &.margin {
+                font-size: #{scaleValue(13)};
+            }
+
+            @media only screen and (max-width: 414px) {
+                font-size: #{scaleValue(45)};
+            }
+        }
+
+        &.flex-svg {
+            display: flex;
+            align-items: center;
+
+            & span.svg {
+                display: inline-block;
+                margin-left: #{scaleValue(7)};
+                cursor: pointer;
+            }
+
+            & svg {
+                height: #{scaleValue(14)};
+                width: #{scaleValue(14)};
+            }
+        }
+
+        &--asset {
+            display: flex;
+            flex-direction: column;
+
+            @media only screen and (max-width: 414px) {
+                flex-shrink: 0;
+            }
+        }
+
+        &--assetsymbol {
+            margin-bottom: #{scaleValue(3)};
+            font-size: #{scaleValue(12)};
+            font-weight: 500;
+
+            @media only screen and (max-width: 414px) {
+                font-size: #{scaleValue(50)};
+            }
+        }
+
+        &--assetpercent {
+            font-size: #{scaleValue(12)};
+
+            & span {
+                display: inline-block;
+            }
+
+            &.up {
+                color: $green;
+
+                & span {
+
+                    &.up {
+                        transform: rotate(90deg);
+                    }
+                }
+            }
+
+            &.down {
+                color: $warning-red;
+
+                & span {
+
+                    &.down {
+                        transform: rotate(-90deg);
+                    }
+                }
+            }
+        }
+
+        &--assetname {
+            font-size: #{scaleValue(13)};
+            text-decoration: underline;
+            opacity: .6;
+
+            @media only screen and (max-width: 414px) {
+                font-size: #{scaleValue(53)};
+            }
+
+            &.primary-colored {
+                color: $primary-color;
+            }
+        }
+    }
+
+    &__areabtns {
+        display: flex;
+        align-items: center;
+
+        & button {
+            font-size: #{scaleValue(13)};
+            margin-right: #{scaleValue(16)};
+            cursor: pointer;
+
+            @media only screen and (max-width: 414px) {
+                font-size: #{scaleValue(45)};
+                margin-right: #{scaleValue(100)};
+            }
+        }
+    }
+
+    &__navigation {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        padding: #{scaleValue(16)} 0;
+
+        @media only screen and (max-width: 414px) {
+            padding: #{scaleValue(50)} 0;
+        }
+
+        & span {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: #{scaleValue(14)};
+            font-size: #{scaleValue(12)};
+            cursor: pointer;
+            opacity: .6;
+            padding: #{scaleValue(7)} #{scaleValue(12)};
+            border-radius: #{scaleValue(6)};
+
+            @media only screen and (max-width: 414px) {
+                font-size: #{scaleValue(60)};
+                padding: #{scaleValue(20)} #{scaleValue(20)};
+                margin-left: #{scaleValue(70)};
+            }
+
+            & svg {
+                fill: $white;
+                height: #{scaleValue(19)};
+                width: #{scaleValue(19)};
+
+                @media only screen and (max-width: 414px) {
+                    height: #{scaleValue(70)};
+                    width: #{scaleValue(70)};
+                }
+            }
+
+            &.current {
+                background: rgba($greyed-out, .6);
+            }
+
+            &.visible {
+                display: inline-block;
+            }
+
+            &.notvisible {
+                display: none;
+            }
+        }
+    }
+}

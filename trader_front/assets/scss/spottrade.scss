@@ -1,0 +1,407 @@
+.spottradearea {
+    border-top: 7px solid $black;
+    padding-top: #{scaleValue(10)};
+    background: $index-body;
+    position: relative;
+    z-index: 10;
+
+    &__nav {
+        @include flex-align;
+        background: $light-black;
+        font-size: #{scaleValue(12)};
+        margin-bottom: #{scaleValue(10)};
+        cursor: pointer;
+
+        &--btn {
+            display: inline-block;
+            margin-right: #{scaleValue(20)};
+            cursor: pointer;
+            padding: #{scaleValue(7)} #{scaleValue(12)};
+
+            &.current {
+                background: $black;
+                color: $primary-color;
+                font-weight: 500;
+            }
+        }
+    }
+
+    &__wallettype {
+        position: relative;
+        padding: #{scaleValue(10)} #{scaleValue(12)};
+        background: rgba($light-black, .3);
+        margin-bottom: 0;
+
+        & h2 {
+            font-weight: 400;
+            color: $green;
+            font-size: #{scaleValue(13)};
+            text-transform: capitalize;
+        }
+
+        &.no-padding {
+            padding: 0 #{scaleValue(12)};
+        }
+
+        &.current {
+            background: $index-body;
+        }
+
+        &.notcurrent {
+
+            & h2 {
+                color: $white
+            }
+        }
+    }
+
+    &__tradetypes {
+        @include flex-align;
+        font-size: #{scaleValue(13)};
+
+        &--btn {
+            display: inline-block;
+            margin-right: #{scaleValue(20)};
+            cursor: pointer;
+            padding: #{scaleValue(10)} #{scaleValue(12)};
+
+            opacity: .5;
+
+            &.current {
+                color: $primary-color;
+                font-weight: 500;
+                opacity: 1;
+            }
+        }
+    }
+
+    &__balance {
+        @include flex-align;
+        padding: #{scaleValue(10)} 0;
+        font-size: #{scaleValue(12)};
+
+        & span {
+            display: inline-block;
+            margin-right: #{scaleValue(12)};
+        }
+
+        &--label {
+            opacity: .4;
+        }
+
+        &--value {}
+
+        &--symbol {}
+
+        &--svg {
+            cursor: pointer;
+            @include flex-align;
+            transform: translateY(#{scaleValue(2)});
+
+            & svg {
+                height: #{scaleValue(12)};
+                width: #{scaleValue(12)};
+                fill: $primary-color;
+
+            }
+        }
+    }
+
+    &__slider {
+        position: relative;
+    }
+
+    &__slidertrack {
+        position: relative;
+        height: #{scaleValue(3)};
+        transform: translateY(#{scaleValue(14)});
+        z-index: 2;
+
+        &.buy {
+            background: $green;
+        }
+
+        &.sell {
+            background: $red;
+        }
+    }
+
+    &__sliderbody {
+        margin: #{scaleValue(16)} 0;
+    }
+
+    &__slidercontainer {
+        position: relative;
+    }
+
+    &__sliderinput {
+        @include sliderInput
+    }
+
+    &__slidervalue {
+        font-size: #{scaleValue(12)};
+        margin-top: #{scaleValue(16)};
+        color: $primary-color;
+
+        &.buy {
+            color: $green;
+        }
+
+        &.sell {
+            color: $red;
+        }
+    }
+
+    &__fundaccount {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        width: 100vw;
+        display: flex;
+        justify-content: center;
+        padding-top: #{scaleValue(100)};
+        background: rgba($black, .3);
+        z-index: 10;
+    }
+
+    &__fundbody {
+        position: relative;
+        background: $black;
+        color: $white;
+        border-radius: #{scaleValue(2)};
+        padding: #{scaleValue(25)};
+        width: #{scaleValue(700)};
+        height: #{scaleValue(500)};
+    }
+
+    &__head {
+        margin-bottom: #{scaleValue(40)};
+
+        &--h2 {
+            font-weight: 500;
+            font-size: #{scaleValue(20)};
+            margin-bottom: #{scaleValue(15)};
+            color: $primary-color;
+        }
+
+        &--h3 {
+            font-weight: 400;
+            font-size: #{scaleValue(15)};
+            opacity: .8;
+        }
+
+        &--close {
+            position: absolute;
+            top: #{scaleValue(25)};
+            right: #{scaleValue(25)};
+            cursor: pointer;
+
+            & svg {
+                fill: $black;
+                opacity: .6;
+                height: #{scaleValue(25)};
+                width: #{scaleValue(25)};
+            }
+        }
+    }
+
+    &__fundoption {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: #{scaleValue(60)};
+        align-items: center;
+
+        &--h3 {
+            font-weight: 400;
+            font-size: #{scaleValue(15)};
+            margin-bottom: #{scaleValue(10)};
+        }
+
+        &--description {
+            font-weight: 300;
+            font-size: #{scaleValue(14)};
+            display: inline-block;
+            width: #{scaleValue(400)};
+        }
+
+        &--btn {
+            width: #{scaleValue(130)};
+            height: #{scaleValue(45)};
+        }
+    }
+
+    &__inputsections {
+        padding: #{scaleValue(10)} #{scaleValue(12)};
+        display: flex;
+        justify-content: space-between;
+
+        &.autotrade {
+            justify-content: center;
+        }
+    }
+
+    &__inputsection {
+        flex-shrink: 0;
+        width: $arbsec-width;
+
+        &.autotrade {
+            width: $arbsec-width-double;
+        }
+
+        &--inputarea {
+            position: relative;
+            display: flex;
+            align-items: center;
+            border: $border;
+            width: $arbsec-width;
+            padding: 0 #{scaleValue(10)};
+            border-radius: #{scaleValue(6)};
+            margin-bottom: #{scaleValue(12)};
+            justify-content: flex-end;
+
+            &.autotrade {
+                width: $arbsec-width-double;
+            }
+
+            &:hover {
+                border: $colored-border;
+            }
+
+            &.error {
+                border-color: $red;
+
+                &:hover {
+                    border-color: $red;
+                }
+            }
+
+            &.market-optimal {
+                overflow: hidden;
+
+                &:hover {
+                    border: $border;
+                }
+
+                &::before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    height: 100%;
+                    width: 100%;
+                    background-color: rgba($black, .7);
+                    z-index: 8;
+                }
+            }
+        }
+
+        &--input {
+            position: relative;
+            background: transparent;
+            @include input;
+            width: 70%;
+            transform: translateX(#{scaleValue(-30)});
+            flex-shrink: 0;
+            height: #{scaleValue(40)};
+            font-size: #{scaleValue(13)};
+            z-index: 2;
+            padding: #{scaleValue(10)};
+
+            &[type="number"] {
+                direction: rtl;
+            }
+
+            &[type="number"]::-webkit-inner-spin-button,
+            &[type="number"]::-webkit-outer-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
+            }
+
+            &[type="text"] {
+                direction: rtl;
+            }
+
+            &[type="text"]::-webkit-inner-spin-button,
+            &[type="text"]::-webkit-outer-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
+            }
+
+            &::placeholder {
+                opacity: 0;
+            }
+        }
+
+        &--placeholder {
+            position: absolute;
+            top: 0;
+            left: #{scaleValue(10)};
+            height: #{scaleValue(40)};
+            font-size: #{scaleValue(12)};
+            font-weight: 300;
+            opacity: .8;
+
+            @include flex-align;
+            z-index: 1;
+        }
+
+        &--labels {
+            @include flex-align;
+            flex-shrink: 0;
+            font-size: #{scaleValue(12)};
+            font-weight: 300;
+            background: $index-body;
+            z-index: 3;
+            height: #{scaleValue(40)};
+            position: absolute;
+            top: 0;
+            right: #{scaleValue(10)};
+            justify-content: flex-end;
+        }
+
+        &--amount {
+            margin-right: #{scaleValue(10)};
+        }
+
+        &--symbol {}
+    }
+
+    &__buybtn {
+        width: $arbsec-width;
+        margin-top: #{scaleValue(20)};
+
+        & button {
+            background: $green;
+            width: 100%;
+            height: #{scaleValue(37)};
+            font-size: #{scaleValue(14)};
+
+            &.sell {
+                background: $red;
+            }
+        }
+
+        &.autotrade {
+            width: $arbsec-width-double;
+
+            & button {
+                background: $primary-color;
+            }
+        }
+    }
+
+    &__autotradetoggle {
+        position: absolute;
+        right: #{scaleValue(12)};
+        top: 0;
+        height: 100%;
+
+        display: flex;
+        align-items: center;
+
+        &--label {
+            margin-right: #{scaleValue(14)};
+        }
+    }
+}

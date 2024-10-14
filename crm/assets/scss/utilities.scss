@@ -1,0 +1,31 @@
+.container {
+    padding: 0 #{scaleValue(20)};
+    min-height: #{scaleValue(850)};
+    padding-top: #{scaleValue(40)};
+}
+
+.flex-area {
+    display: flex;
+    align-items: center;
+}
+
+.margin-bottom-header {
+    margin-bottom: #{scaleValue(10)};
+}
+
+.svg {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    cursor: pointer;
+
+    & svg {
+        height: #{scaleValue(17)};
+        width: #{scaleValue(17)};
+        fill: $white;
+    }
+}
+
+.align-text-to-right {
+    text-align: right;
+}

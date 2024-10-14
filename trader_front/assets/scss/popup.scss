@@ -1,0 +1,115 @@
+.popup {
+    @include popup-parent;
+
+    &.autotradesettings {
+        padding-top: #{scaleValue(70)};
+    }
+
+    &__body {
+        @include popup-body;
+        background: rgba($index-body, .8);
+    }
+
+    &__close {
+        @include popup-close;
+    }
+
+    &.cover {
+        background: rgba($index-body, .9);
+    }
+
+    &__warningsvg {
+
+        &--svg {
+
+            & svg {
+                height: #{scaleValue(50)};
+                width: #{scaleValue(50)};
+                fill: $primary-color;
+            }
+        }
+    }
+
+    &__text {
+        text-align: left;
+        font-size: #{scaleValue(15)};
+        line-height: #{scaleValue(21)};
+        margin-top: #{scaleValue(10)};
+        margin-bottom: #{scaleValue(20)};
+        overflow: hidden;
+        position: relative;
+
+        &.autotradesettings {
+            height: #{scaleValue(400)};
+            overflow: hidden;
+            overflow-y: auto;
+            padding-bottom: #{scaleValue(40)};
+        }
+
+        &--h3 {
+            color: $success;
+            margin-bottom: #{scaleValue(40)};
+
+            &.bot {
+                text-align: center;
+            }
+        }
+
+
+        &--p {
+            transition: all .4s ease;
+            transform: translateX(100%);
+            position: absolute;
+            top: #{scaleValue(50)};
+            height: #{scaleValue(200)};
+            background: rgba($index-body, .9);
+            line-height: #{scaleValue(26)};
+
+            &.current {
+                transform: translate(0);
+            }
+
+            &.previous {
+                transform: translateX(-100%);
+            }
+        }
+    }
+
+    &__content {
+        width: #{scaleValue(400)};
+    }
+
+    &__action {
+
+        &--btn {
+            width: #{scaleValue(400)};
+            font-size: #{scaleValue(15)};
+        }
+    }
+
+    &__panenav {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        & span {
+            display: inline-block;
+
+            &.arrow {
+                font-size: #{scaleValue(20)};
+                cursor: pointer;
+                color: rgba($white, .7);
+                transition: all .4s ease;
+                padding: #{scaleValue(15)};
+
+                &:hover {
+                    color: $white;
+                }
+            }
+
+            &.space {
+                width: #{scaleValue(30)};
+            }
+        }
+    }
+}

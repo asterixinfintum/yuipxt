@@ -1,0 +1,40 @@
+.previewtrade {
+
+    &__content {
+        border-top: $border;
+        padding-top: #{scaleValue(20)};
+    }
+
+    &__contentitem {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: #{scaleValue(20)}
+    }
+
+    &__contentitemleft {
+        font-size: #{scaleValue(13)};
+        opacity: .6;
+        text-transform: capitalize
+    }
+
+    &__contentitemright {
+        text-transform: capitalize;
+        font-size: #{scaleValue(12)};
+
+        &--top {
+            font-size: #{scaleValue(13)};
+        }
+
+        &--bottom {
+            opacity: .6;
+            font-size: #{scaleValue(12)};
+            margin-top: #{scaleValue(8)};
+
+            &.wallet-type {
+                margin: 0;
+                text-transform: capitalize;
+                color: $landing-green;
+            }
+        }
+    }
+}

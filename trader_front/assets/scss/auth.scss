@@ -1,0 +1,144 @@
+.auth {
+
+    &__container {
+        padding-left: #{scaleValue(400)};
+        padding-top: #{scaleValue(150)};
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__h1 {
+        font-weight: 500;
+        font-size: #{scaleValue(25)};
+        margin-bottom: #{scaleValue(40)};
+    }
+
+    &__inputarea {
+        margin-bottom: #{scaleValue(30)};
+
+        &--label {
+            display: flex;
+            align-items: center;
+            margin-bottom: #{scaleValue(5)};
+
+            &.withdrawal {
+                font-size: #{scaleValue(10)} !important;
+            }
+
+            & p {
+                margin-right: #{scaleValue(5)};
+
+                &:nth-child(1) {
+                    font-weight: 300;
+                }
+
+                &:nth-child(2) {
+                    color: $red
+                }
+            }
+        }
+
+        &--input {
+            margin-bottom: #{scaleValue(5)};
+            position: relative;
+            display: inline-block;
+
+            &.withdrawal {
+                width: 100%
+            }
+
+            & img {
+                opacity: .3;
+                cursor: pointer;
+                height: #{scaleValue(50)};
+                width: #{scaleValue(20)};
+                position: absolute;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                top: 0;
+                right: 0;
+            }
+
+            & input {
+                @include input;
+                border: $border;
+                border-radius: #{scaleValue(5)};
+                width: #{scaleValue(400)};
+                height: #{scaleValue(50)};
+                padding: #{scaleValue(15)};
+
+                &.withdrawal {
+                    width: 100%
+                }
+
+                &:hover {
+                    border-color: $primary-color;
+                }
+
+                &:focus {
+                    border-color: $primary-color;
+                }
+
+                &.error {
+                    border-color: $red;
+                }
+            }
+
+            & textarea {
+                @include input;
+                border: $border;
+                border-radius: #{scaleValue(5)};
+                width: #{scaleValue(400)};
+                height: #{scaleValue(200)};
+
+                padding: #{scaleValue(15)};
+            }
+        }
+    }
+
+    &__terms {
+        display: flex;
+        width: #{scaleValue(400)};
+        margin-bottom: #{scaleValue(30)};
+        flex-direction: column;
+    }
+
+    &__termsarea {
+        display: flex;
+    }
+
+    &__checkboxarea {
+        margin-right: #{scaleValue(8)};
+    }
+
+    &__termsdescription {
+        font-size: #{scaleValue(14)};
+
+        &--p {
+
+            & span {
+
+                &.highlight {
+                    text-decoration: underline;
+                    font-size: #{scaleValue(15)};
+                    color: $primary-color;
+                    cursor: pointer;
+                }
+            }
+        }
+
+        &--error {
+            font-size: #{scaleValue(12)};
+            color: $red;
+            width: #{scaleValue(400)};
+            margin-top: #{scaleValue(10)};
+        }
+    }
+
+    &__btn {
+        width: #{scaleValue(400)};
+        height: #{scaleValue(50)};
+        font-size: #{scaleValue(15)};
+    }
+}

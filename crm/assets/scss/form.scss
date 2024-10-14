@@ -1,0 +1,108 @@
+//$area-width: #{scaleValue(600)};
+
+.form {
+
+}
+
+.formArea {
+    display: flex;
+    flex-direction: column;
+}
+
+.formInputField {
+    @include input-style;
+    //margin-bottom: #{scaleValue(26)};
+    position: relative;
+
+    &.error {
+        border: 1px solid red;
+    }
+
+    &.valid {
+        border: 1px solid $primary-color;
+    }
+
+    &.textarea {
+        height: #{scaleValue(500)};
+        display: flex;
+        align-items: center;
+    }
+
+    & input {
+        height: 100%;
+        width: 100%;
+        outline: none;
+        border: none;
+        font-size: #{scaleValue(15)};
+        background: transparent;
+    }
+
+    & textarea {
+        height: 95%;
+        width: 100%;
+        outline: none;
+        border: none;
+        font-size: #{scaleValue(15)};
+        background: transparent;
+    }
+}
+
+.formInputLabel {
+    @include input-label-style;
+}
+
+.formInputIcon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding-right: #{scaleValue(20)};
+    background: none;
+    border: none;
+    outline: none;
+
+    & svg {
+        fill: rgba($font-color, .4);
+        height: #{scaleValue(16)};
+        width: #{scaleValue(16)};
+    }
+}
+
+.formButtonArea {
+    width: $area-width;
+    margin-top: #{scaleValue(30)};
+}
+
+.formSubmitbutton {
+    width: 100%;
+    height: #{scaleValue(45)};
+    background: $primary-color;
+    border: none;
+    outline: none;
+    color: $white;
+    font-size: #{scaleValue(17)};
+    font-weight: 300;
+    border-radius: #{scaleValue(15)};
+    font-weight: 400;
+    cursor: pointer;
+}
+
+.formBottomArea {
+
+    &__alternate {
+        font-size: #{scaleValue(13)};
+        margin-top: #{scaleValue(30)};
+
+        & span {
+
+        }
+
+        & a {
+            text-decoration: none;
+            color: $primary-color;
+        }
+    }
+}

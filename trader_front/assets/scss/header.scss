@@ -1,0 +1,379 @@
+.header {
+    border-bottom: $border;
+    @include flex-align;
+    justify-content: space-between;
+    align-items: center;
+    height: #{scaleValue(60)};
+    padding: #{scaleValue(35)} #{scaleValue(30)};
+    font-size: #{scaleValue(13.5)};
+    font-weight: 500;
+    position: relative;
+    transition: all .4s ease;
+
+    background: $black-background;
+
+    &__desktop {
+        @media only screen and (max-width: 414px) {
+            display: none;
+        }
+    }
+
+    &__mobile {
+        display: none;
+        padding: #{scaleValue(80)};
+        position: relative;
+
+        @media only screen and (max-width: 414px) {
+            display: block;
+        }
+
+        height: #{scaleValue(250)};
+        background: $faded-black;
+
+        &--burger {
+
+            & svg {
+                height: #{scaleValue(80)};
+                width: #{scaleValue(80)};
+            }
+        }
+
+        &--main {
+            position: relative;
+            display: flex;
+            align-items: center;
+            height: 100%;
+            z-index: 3;
+        }
+
+        &--sidenav {
+            position: fixed;
+            top: 0;
+           
+            left: 0;
+            width: 100vw;
+            min-height: 80vh;
+            background: rgba($faded-black, 1);
+
+            padding: #{scaleValue(80)};
+            padding-top: #{scaleValue(340)};
+            z-index: 2;
+
+            display: none;
+
+            &.visible {
+                display: block;
+            }
+        }
+
+        &--dropdown {
+            padding: #{scaleValue(80)} 0;
+            display: none;
+
+            &.visible {
+                display: block;
+            }
+        }
+
+        &--dropdownitem {
+            display: flex;
+            flex-direction: column;
+
+            padding-left: #{scaleValue(50)};
+            margin-bottom: #{scaleValue(100)};
+
+            & label {
+                margin-bottom: #{scaleValue(30)};
+                color: $landing-green;
+                font-size: #{scaleValue(55)};
+            }
+
+            & span {
+                font-size: #{scaleValue(50)};
+                line-height: #{scaleValue(90)};
+            }
+        }
+    }
+
+    @media only screen and (max-width: 414px) {
+        padding: #{scaleValue(50)};
+        line-height: #{scaleValue(160)};
+    }
+
+    &.auth {
+        border: none
+    }
+
+    &__logo {
+        font-size: #{scaleValue(25)};
+        text-transform: capitalize;
+        @include flex-align;
+        margin-right: #{scaleValue(40)};
+        cursor: pointer;
+
+        @media only screen and (max-width: 414px) {
+            margin-left: #{scaleValue(500)};
+            font-size: #{scaleValue(100)};
+        }
+
+        & figure {
+            height: #{scaleValue(20)};
+            width: #{scaleValue(20)};
+            border-radius: 100%;
+            overflow: hidden;
+            margin-right: #{scaleValue(5)};
+
+            @media only screen and (max-width: 414px) {
+                height: #{scaleValue(70)};
+                width: #{scaleValue(70)};
+                margin-right: #{scaleValue(20)};
+            }
+
+            & img {
+                object-fit: cover;
+                height: 100%;
+                width: 100%;
+                transform: scale(1.1);
+            }
+        }
+    }
+
+    &.landing {
+        border: none;
+        background: transparent;
+    }
+
+    &__left {
+        @include flex-align
+    }
+
+    &__menu {
+        @include flex-align;
+    }
+
+    &__right {
+        @include flex-align
+    }
+
+    &__search {
+        @include flex-align;
+        @include header-item-margin-right;
+        border: $border;
+        border-radius: 3rem;
+        padding: #{scaleValue(8)} #{scaleValue(15)};
+        height: #{scaleValue(45)};
+        width: #{scaleValue(350)};
+
+        &:hover {
+            border: $colored-border;
+        }
+
+        &.landing {
+
+            &:hover {
+                border: $border;
+            }
+
+            & input {
+
+                &::placeholder {
+                    color: $white;
+                }
+            }
+        }
+
+        &.scrolled-far-enough {
+            border: $colored-border;
+
+            &:hover {
+                border: $colored-border;
+            }
+
+            & input {
+
+                &::placeholder {
+                    color: $black;
+                }
+            }
+        }
+
+        &--logo {
+
+            & svg {
+                height: #{scaleValue(15)};
+                width: #{scaleValue(15)};
+                display: inline-block;
+                transform: translateY(#{scaleValue(2)});
+                margin-right: #{scaleValue(5)};
+            }
+        }
+
+        &--input {
+
+            & input {
+                @include input;
+                font-size: #{scaleValue(15)};
+            }
+        }
+    }
+
+    &__menuitem {
+        @include flex-align;
+        cursor: pointer;
+        position: relative;
+
+        @media only screen and (max-width: 414px) {
+            font-size: #{scaleValue(55)};
+
+            border-bottom: 1px solid rgba($white, .5);
+            padding: #{scaleValue(70)} 0;
+        }
+
+        &:not(:last-child) {
+            @include header-item-margin-right;
+        }
+
+        & span {
+            display: inline-block;
+
+            &.svg {
+                margin-left: #{scaleValue(5)};
+
+                @media only screen and (max-width: 414px) {
+                    margin-left: #{scaleValue(20)};
+                }
+
+                & svg {
+                    height: #{scaleValue(8)};
+                    width: #{scaleValue(8)};
+
+                    @media only screen and (max-width: 414px) {
+                        height: #{scaleValue(38)};
+                        width: #{scaleValue(38)};
+                    }
+                }
+            }
+
+            &.notifications {
+                display: flex !important;
+                align-items: center;
+                justify-content: center;
+                position: absolute;
+                background: $red;
+                color: $white;
+                border-radius: 100%;
+                height: #{scaleValue(20)};
+                width: #{scaleValue(20)};
+                font-size: #{scaleValue(10)};
+                top: #{scaleValue(-10)};
+                right: 0;
+            }
+        }
+
+        & label {
+            cursor: pointer;
+        }
+
+        &--svgbtn {
+            display: flex !important;
+            align-items: center;
+            justify-content: center;
+            height: #{scaleValue(40)};
+            width: #{scaleValue(40)};
+            background: $menu-dropdown-background;
+            border-radius: 100%;
+
+            & svg {
+                fill: $green;
+                height: #{scaleValue(20)};
+                width: #{scaleValue(20)};
+            }
+        }
+
+        &:hover {
+
+            & .header__dropdown {
+                display: block;
+            }
+        }
+
+        &--userplan {
+            display: inline-block;
+            margin-right: #{scaleValue(10)};
+        }
+
+        &--username {}
+    }
+
+    &.scrolled-far-enough {
+        background: $white;
+        color: $black;
+        box-shadow: 0px 1px 3px 0px rgba(32, 77, 176, 0.7);
+    }
+
+    &__dropdown {
+        position: absolute;
+        min-height: #{scaleValue(20)};
+        top: #{scaleValue(13)};
+        padding: #{scaleValue(15)};
+        padding-left: 0;
+
+        display: none;
+
+        &:hover {
+            display: block;
+        }
+
+        &.left {
+            left: 0
+        }
+
+        &.right {
+            right: 0
+        }
+    }
+
+    &__dropdowncontent {
+        color: $white;
+        background: $menu-dropdown-background;
+        min-width: #{scaleValue(270)};
+        border-radius: #{scaleValue(5)};
+
+        padding: #{scaleValue(20)} 0;
+
+        &--item {
+            display: flex;
+            align-items: center;
+            padding: #{scaleValue(10)} #{scaleValue(18)};
+            cursor: pointer;
+
+            &:hover {
+                background: rgba($landing-green, .06);
+                color: $white;
+            }
+        }
+
+        &--headerlabel {
+            font-size: #{scaleValue(14)};
+            font-weight: 400;
+            color: $green;
+        }
+
+        &--logo {
+
+            & svg {
+                fill: $white;
+                height: #{scaleValue(20)};
+                width: #{scaleValue(20)};
+            }
+        }
+
+        &--textlabel {
+            margin-top: #{scaleValue(10)};
+            font-size: #{scaleValue(12)};
+            font-weight: 300;
+            line-height: #{scaleValue(17)};
+            color: rgba($white, .7)
+        }
+    }
+}

@@ -1,0 +1,234 @@
+$header-background: #181a20;
+$background: rgb(22, 26, 30);
+
+.trader {
+    color: rgba($white, .7);
+
+    &__escalator {
+        width: 100vw;
+        position: relative;
+        z-index: 8;
+    }
+
+    &__header {
+        position: relative;
+        z-index: 8;
+        width: 100vw;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: $header-background;
+        font-size: #{scaleValue(13)};
+        border-bottom: $border;
+
+        padding: #{scaleValue(18)} #{scaleValue(35)};
+        color: rgba($white, .7);
+
+        border: none;
+
+        background: linear-gradient(to bottom,
+                rgba($landing-primary, 1),
+                rgba($landing-primary, 0.8));
+
+        &--area {
+            display: flex;
+            align-items: center;
+        }
+
+        &--logo {
+            margin-right: #{scaleValue(20)};
+
+            & figure {
+                height: #{scaleValue(35)};
+                width: #{scaleValue(100)};
+
+                & img {
+                    height: 100%;
+                    width: 100%;
+                    object-fit: cover;
+                }
+            }
+        }
+
+        &--menu {
+            display: flex;
+            align-items: center;
+        }
+
+        &--menuitem {
+            cursor: pointer;
+            margin-right: #{scaleValue(35)};
+            transition: all 0.5s ease;
+
+            display: flex;
+            align-items: center;
+
+            &.current {
+                color: $neon-blue;
+            }
+
+            &:hover {
+                color: $neon-blue;
+            }
+
+            &.current {
+                color: $neon-blue;
+            }
+
+            &:last-child {
+                margin: 0;
+            }
+
+            &.menuitembtn {
+                background: $bitcoin-orange;
+                padding: #{scaleValue(10)} #{scaleValue(15)};
+                border-radius: #{scaleValue(10)};
+                color: $black;
+                font-weight: 500;
+            }
+
+            & span {
+                display: flex;
+                align-items: center;
+
+                & svg {
+                    fill: $white;
+                    height: #{scaleValue(15)};
+                    width: #{scaleValue(15)};
+
+                    &:hover {
+                        fill: $neon-blue;
+                    }
+                }
+            }
+        }
+    }
+
+    &__search {
+        position: absolute;
+        z-index: 8;
+        top: #{scaleValue(72)};
+        left: 0;
+        min-height: #{scaleValue(600)};
+        width: 100vw;
+        background: rgba($background, 1);
+        padding: #{scaleValue(20)} #{scaleValue(35)};
+
+        &--body {
+            padding: #{scaleValue(20)} 0;
+        }
+
+        &--results {
+            margin-bottom: #{scaleValue(30)};
+        }
+
+        &--resultslist {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-gap: #{scaleValue(15)};
+        }
+
+        &--resultsh2 {
+            font-weight: 400;
+            font-size: #{scaleValue(14)};
+            color: rgba($bitcoin-orange, 0.9);
+            margin-bottom: #{scaleValue(20)};
+        }
+
+        &--menu {
+            margin-bottom: #{scaleValue(30)};
+
+            & span {
+                display: inline-block;
+                color: rgba($white, 0.4);
+                font-size: #{scaleValue(12)};
+                cursor: pointer;
+                margin-right: #{scaleValue(30)};
+                transition: all 0.4s ease;
+
+                &:hover {
+                    color: $neon-blue;
+                }
+
+                &.current {
+                    color: $neon-blue;
+                }
+            }
+        }
+
+        &--result {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.5s ease;
+            padding: #{scaleValue(16)};
+            border-radius: #{scaleValue(5)};
+            cursor: pointer;
+
+            background: rgba($neon-pink, 0.01);
+
+            &:hover {
+                background: rgba($neon-pink, 0.1);
+            }
+        }
+
+        &--resultleft {
+            display: flex;
+            color: rgba($neon-blue, 0.9);
+
+            & figure {
+                height: #{scaleValue(23)};
+                width: #{scaleValue(23)};
+                border-radius: 100%;
+                margin-right: #{scaleValue(10)};
+
+                & img {
+                    height: 100%;
+                    width: 100%;
+                    object-fit: cover;
+                }
+            }
+
+            font-size: #{scaleValue(13)};
+        }
+
+        &--resultright {
+            display: flex;
+            flex-direction: column;
+            font-size: #{scaleValue(13)};
+            text-align: right;
+            line-height: #{scaleValue(20)};
+
+            & span {
+                display: inline-block;
+
+                &:nth-child(1) {
+                    font-weight: 500;
+                }
+
+                &:nth-child(2) {
+                    font-size: #{scaleValue(12)};
+                }
+            }
+        }
+
+        &--input {
+            & input {
+                width: 100%;
+                height: #{scaleValue(40)};
+                background: transparent;
+                border: 0.1px solid rgba($white, 0.5);
+                border-radius: #{scaleValue(4)};
+                padding: #{scaleValue(22)} #{scaleValue(20)};
+
+                outline: none;
+                color: rgba($white, 0.8);
+                font-size: #{scaleValue(15)};
+
+                &:focus {
+                    border: 0.1px solid rgba($neon-blue, 0.7);
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,150 @@
+.balancearea {
+    border-bottom: $border;
+    padding-bottom: #{scaleValue(30)};
+    margin-bottom: #{scaleValue(25)};
+
+    &.row {
+        display: flex;
+
+        @media only screen and (max-width: 414px) {
+            flex-direction: column;
+        }
+    }
+
+    &__section {
+
+        @media only screen and (max-width: 414px) {
+            margin-bottom: #{scaleValue(80)};
+        }
+
+        &.main {
+            width: #{scaleValue(650)};
+
+            @media only screen and (max-width: 414px) {
+                width: auto;
+            }
+        }
+
+        &.secondary {
+
+            &:not(:last-child) {
+                margin-right: #{scaleValue(150)};
+            }
+        }
+    }
+
+    &__primarylabel {
+        display: flex;
+        align-items: center;
+        margin-bottom: #{scaleValue(25)};
+
+        &--h3 {
+            font-size: #{scaleValue(16)};
+            font-weight: 500;
+            margin-right: #{scaleValue(10)};
+
+            @media only screen and (max-width: 414px) {
+                font-size: #{scaleValue(70)};
+                margin-bottom: #{scaleValue(30)};
+            }
+        }
+
+        &--eyesvg {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: $light-black;
+            padding: #{scaleValue(5)} #{scaleValue(10)};
+            border-radius: #{scaleValue(10)};
+            cursor: pointer;
+
+            & svg {
+                height: #{scaleValue(15)};
+                width: #{scaleValue(15)};
+                opacity: .6;
+
+                @media only screen and (max-width: 414px) {
+                    height: #{scaleValue(60)};
+                    width: #{scaleValue(60)};
+                }
+            }
+        }
+    }
+
+    &__primarybalance {
+        display: flex;
+        align-items: center;
+        font-size: #{scaleValue(23)};
+        font-weight: 600;
+
+        @media only screen and (max-width: 414px) {
+            font-size: #{scaleValue(50)};
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        &--btcvalue {
+            opacity: .9;
+
+            @media only screen and (max-width: 414px) {
+                font-size: #{scaleValue(50)};
+            }
+        }
+
+        &--equals {
+            display: flex;
+            margin: 0 #{scaleValue(10)};
+            opacity: .6;
+
+            @media only screen and (max-width: 414px) {
+                font-size: #{scaleValue(50)};
+                margin: 0;
+            }
+        }
+
+        &--usdvalue {
+            opacity: .6;
+
+            @media only screen and (max-width: 414px) {
+                font-size: #{scaleValue(50)};
+            }
+        }
+    }
+
+    &__secondarybalance {
+        display: flex;
+        flex-direction: column;
+
+        &--h3 {
+            font-size: #{scaleValue(14)};
+            font-weight: 400;
+            margin-bottom: #{scaleValue(12)};
+
+            @media only screen and (max-width: 414px) {
+                font-size: #{scaleValue(70)};
+                margin-bottom: #{scaleValue(30)};
+            }
+        }
+
+        &--btcvalue {
+            font-size: #{scaleValue(19)};
+            font-weight: 600;
+            opacity: .9;
+            margin-bottom: #{scaleValue(5.5)};
+
+            @media only screen and (max-width: 414px) {
+                font-size: #{scaleValue(50)};
+            }
+        }
+
+        &--usdvalue {
+            font-size: #{scaleValue(16)};
+            font-weight: 500;
+            opacity: .6;
+
+            @media only screen and (max-width: 414px) {
+                font-size: #{scaleValue(50)};
+            }
+        }
+    }
+}

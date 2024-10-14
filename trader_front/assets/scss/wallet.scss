@@ -1,0 +1,190 @@
+.walletdeposit {
+
+    &__content {
+        display: flex;
+
+        &--h2 {
+            font-weight: 500;
+            margin-bottom: #{scaleValue(20)};
+            font-size: #{scaleValue(20)};
+            transition: all .4s ease;
+
+            &:not(:first-child) {
+                margin-top: #{scaleValue(30)};
+            }
+
+            &.smaller {
+                font-size: #{scaleValue(13)};
+                color: rgba($second-border-color, .7);
+            }
+        }
+    }
+
+    &__contentarea {
+        position: relative;
+        width: #{scaleValue(800)};
+    }
+
+    &__select {
+        display: flex;
+        align-items: center;
+    }
+
+    &__selected {
+        margin-top: #{scaleValue(15)};
+    }
+
+    &__selectarea {
+        display: flex;
+        align-items: center;
+
+        padding: #{scaleValue(8)} #{scaleValue(15)};
+        margin-right: #{scaleValue(15)};
+        border-radius: #{scaleValue(3)};
+        cursor: pointer;
+        background: rgba($faded-black, .5);
+        transition: all .4s ease;
+
+        &:hover {
+            background: $faded-black;
+        }
+
+        &.selected {
+            background: transparent;
+            padding-left: 0;
+        }
+
+        & figure {
+            width: #{scaleValue(16)};
+            height: #{scaleValue(16)};
+            margin-right: #{scaleValue(5)};
+            cursor: pointer;
+
+            & img {
+                object-fit: cover;
+                height: 100%;
+                width: 100%;
+            }
+
+            &.selected-img {
+                width: #{scaleValue(20)};
+                height: #{scaleValue(20)};
+            }
+        }
+
+        & label {
+            font-size: #{scaleValue(13)};
+            font-weight: 400;
+            text-transform: uppercase;
+            color: rgba($second-border-color, .7);
+            cursor: pointer;
+
+            &.selected-symbol {
+                font-size: #{scaleValue(16)};
+                color: rgba($white, 1);
+                margin-right: #{scaleValue(8)};
+            }
+
+            &.selected-name {
+                font-size: #{scaleValue(13)};
+                text-transform: capitalize;
+                color: rgba($second-border-color, .4);
+            }
+        }
+    }
+
+    &__networkarea {
+        display: flex;
+        flex-direction: column;
+        background: rgba($faded-black, .5);
+        padding: #{scaleValue(11)} #{scaleValue(15)};
+        cursor: pointer;
+        transition: .4s ease;
+
+        &:hover {
+            background: $faded-black;
+        }
+
+        & label {
+            cursor: pointer;
+
+            &.label {
+                font-size: #{scaleValue(15)};
+                margin-bottom: #{scaleValue(5)};
+                font-weight: 600;
+            }
+
+            &.name {
+                font-size: #{scaleValue(13)};
+                color: rgba($second-border-color, .7);
+                text-transform: capitalize;
+            }
+        }
+    }
+
+    &__networklist {
+
+        &:not(:last-child) {
+            margin-bottom: #{scaleValue(20)};
+        }
+    }
+
+    &__selectednetworkarea {
+        flex-direction: row;
+        align-items: center;
+        border: $border;
+        background: transparent;
+        border-radius: #{scaleValue(3)};
+
+        &:hover {
+            background: transparent;
+        }
+
+        & label {
+            display: flex;
+            align-items: center;
+
+            &.label {
+                margin-bottom: 0;
+                margin-right: #{scaleValue(7)};
+            }
+        }
+    }
+
+    &__address {
+        background: rgba($faded-black, .9);
+        padding: #{scaleValue(14)};
+        border-radius: #{scaleValue(3)};
+        display: flex;
+        align-items: center;
+
+        &--body {
+            display: flex;
+            flex-direction: column;
+        }
+
+        &--header {
+            font-size: #{scaleValue(12)};
+            color: rgba($white, .5);
+            margin-bottom: #{scaleValue(7)};
+        }
+
+        &--addrstring {
+            font-size: #{scaleValue(12)};
+        }
+
+        &--copysvg {
+            cursor: pointer;
+            padding: #{scaleValue(7)};
+            background: rgba($traderview-background, .5);
+            border-radius: #{scaleValue(3)};
+            margin-left: #{scaleValue(10)};
+
+            & svg {
+                height: #{scaleValue(20)};
+                width: #{scaleValue(20)};
+                color: $index-body;
+            }
+        }
+    }
+}

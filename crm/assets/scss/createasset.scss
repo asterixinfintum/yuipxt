@@ -1,0 +1,17 @@
+.createasset {
+
+    &__contents {
+        padding: #{scaleValue(50)};
+    }
+    
+    &__inputs {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    &__inputarea {
+        display: flex;
+        flex-direction: column;
+        margin-right: #{scaleValue(50)};
+    }
+}

@@ -1,0 +1,73 @@
+.sectiondropdowns {
+    margin-bottom:  #{scaleValue(29)};
+    display: flex;
+
+    &__area {
+        display: flex;
+        flex-direction: column;
+
+        margin-right: #{scaleValue(15)};
+
+        &--label {
+            font-size: #{scaleValue(13)};
+            opacity: .6;
+            margin-bottom: #{scaleValue(10)};
+        }
+    }
+
+    &__dropdown {
+        border: $border;
+        border-radius: #{scaleValue(3)};
+        padding:#{scaleValue(10)};
+        cursor: pointer;
+
+        &:hover {
+            border: $colored-border;
+        }
+
+        & span {
+            height: 100%;
+
+            &.name {
+                font-size: #{scaleValue(13)};
+                opacity: .6;
+                margin-right: #{scaleValue(60)};
+            }
+
+            &.svg {
+                display: inline-block;
+                transform: translateY(#{scaleValue(4)});
+                
+                & svg {
+                    height: #{scaleValue(15)};
+                    width: #{scaleValue(15)};
+                    fill: $current;
+                }
+            }
+        }
+    }
+
+
+    &__input {
+        background: transparent;
+        border: none;
+        outline: none;
+        color: $white
+    }
+
+    &__link {
+        position: relative;
+        color: $primary-color;
+        cursor: pointer;
+        text-decoration: underline;
+        font-size: #{scaleValue(13)};
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+
+        & p {
+            margin-top: auto;
+        }
+    }
+}

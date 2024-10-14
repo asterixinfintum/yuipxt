@@ -1,0 +1,67 @@
+.settings {
+
+    &__area {
+        position: relative;
+        display: flex;
+        margin-bottom: #{scaleValue(18)};
+        padding: #{scaleValue(18)};
+        background: rgba($primary-color, .02);
+        border-radius: $box-radius;
+
+        &--content-subject {
+            margin-bottom: #{scaleValue(10)};
+            
+            & label {
+                display: inline-block;
+                width: #{scaleValue(600)};
+                font-size: #{scaleValue(13.5)};
+            }
+            
+            & span {
+                display: inline-block;
+                font-size: #{scaleValue(13)};
+                transform: translateY(#{scaleValue(13)});
+            }
+        }
+
+        &--content-description {
+            opacity: .6;
+            font-size: #{scaleValue(12)};
+        }
+
+        &--btn {
+            position: absolute;
+            bottom: #{scaleValue(18)};
+            right: #{scaleValue(18)};
+            cursor: pointer;
+
+            & button {
+                cursor: pointer;
+            }
+        }
+    }
+
+    &__inputsection {
+        margin-top: #{scaleValue(10)};
+    }
+
+    &__inputarea {
+        margin-top: #{scaleValue(20)};
+
+        & label {
+            display: inline-block;
+            margin-bottom: #{scaleValue(10)};
+        }
+    }
+
+    &__popbtns {
+        margin-top: #{scaleValue(30)};
+
+        & button {
+
+            &:nth-child(1) {
+                margin-right: #{scaleValue(10)};
+            }
+        }
+    }
+}

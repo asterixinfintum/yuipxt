@@ -1,0 +1,128 @@
+.list {
+    display: flex;
+    flex-direction: column;
+
+    &.overview {
+        margin-top: #{scaleValue(50)};
+
+        & .list__itemarea {
+            margin-right: #{scaleValue(5)};
+        }
+    }
+
+    &.recenttransactions {
+        margin-top: #{scaleValue(40)};
+    }
+
+    &__item {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        //justify-content: space-between;
+
+        &.overview {
+            margin-top: #{scaleValue(70)};
+        }
+
+        &.transactions-preview {
+            font-size: #{scaleValue(13)};
+            margin-bottom: #{scaleValue(30)};
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+
+    &__itemarea {
+        display: flex;
+        align-items: center;
+
+        &.column {
+            flex-direction: column;
+        }
+
+        & span {
+            display: flex;
+            align-items: center;
+        }
+
+        &--labellogo {
+            opacity: .7;
+            margin-right: #{scaleValue(10)};
+
+            svg {
+                height: #{scaleValue(20)};
+                width: #{scaleValue(20)};
+            }
+        }
+
+        &--label {
+            font-size: #{scaleValue(15)};
+        }
+
+        &--walletbalance {
+            font-weight: 600;
+        }
+
+        &--btn {
+            padding: #{scaleValue(7)} #{scaleValue(10)};
+            font-size: #{scaleValue(12)};
+            margin-right: #{scaleValue(12)};
+        }
+
+        &--goarrow {
+
+            & svg {
+                height: #{scaleValue(20)};
+                width: #{scaleValue(20)};
+                fill: $white;
+                opacity: .4;
+            }
+        }
+
+        &--transactionlogo {
+
+            & span {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-right: #{scaleValue(12)};
+
+                & svg {
+                    height: #{scaleValue(20)};
+                    width: #{scaleValue(20)};
+                    fill: $white;
+                    opacity: .4;
+                }
+            }
+        }
+
+        &--transactiontype {
+            margin-bottom:  #{scaleValue(6)};
+        }
+
+        &--transactiondate {
+            font-size: #{scaleValue(12)};
+            opacity: .6;
+        }
+
+        &--transactionvalue {
+            margin-bottom:  #{scaleValue(6)};
+        }
+
+        &--transactionstatus {
+            font-size: #{scaleValue(12)};
+            opacity: .6;
+
+            & span {
+                display: inline-block;
+
+                &.success {
+                    height: #{scaleValue(6)};
+                    width: #{scaleValue(6)};
+                    border-radius: 100%;
+                    background: $success
+                }
+            }
+        }
+    }
+}

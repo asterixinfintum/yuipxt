@@ -1,0 +1,48 @@
+@import url(https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap);
+
+:root {
+    --ideal-viewport-width: 1600;
+}
+
+@function scaleValue($value) {
+    @return calc(
+      #{$value} * (clamp(350px, 100vw, 3840px) / var(--ideal-viewport-width))
+    );
+}
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    scroll-behavior: smooth;
+}
+
+body {
+    overflow-x: hidden;
+    background: rgba($primary-color, .1);
+    height: #{scaleValue(900)};
+}
+
+html {
+    font-family: 'Inter', sans-serif;
+    font-size: #{scaleValue(15)};
+    color: $font-color;
+
+    @media only screen and (max-width: 414px) {
+      font-size: #{scaleValue(60)};
+    }
+}
+
+body::-webkit-scrollbar {
+    width: #{scaleValue(5)};
+}
+  
+body::-webkit-scrollbar-track {
+   // background: #F16961; 
+}
+  
+body::-webkit-scrollbar-thumb {
+    background-color:#fff;
+    border-radius: 3rem;  
+    border: none;
+}

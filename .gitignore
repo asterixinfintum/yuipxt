@@ -1,0 +1,6 @@
+node_modules/
+.env
+zplayground/
+bitcoinplayground/
+nginx/default.conf
+Dockerfile

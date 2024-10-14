@@ -1,0 +1,132 @@
+.createbot {
+
+    &__stage {
+        width: #{scaleValue(400)};
+    }
+
+    &__input {
+        color: $white !important;
+        opacity: 1;
+
+        &.error {
+            border-color: $red;
+        }
+    }
+
+    &__types {
+        display: flex;
+        flex-wrap: wrap;
+        width: #{scaleValue(1200)};
+    }
+
+    &__type {
+        background: rgba($faded-black, .5);
+        margin-bottom: #{scaleValue(15)};
+        cursor: pointer;
+        border: $border;
+        width: #{scaleValue(300)};
+        flex-shrink: 0;
+        margin-left: #{scaleValue(15)};
+
+        &.selected {
+            border-color: rgba($primary-color, .8);
+            border-radius: #{scaleValue(5)};
+        }
+
+        &.notselected {
+            display: none;
+        }
+
+
+        &--label {
+            display: inline-block;
+            width: 100%;
+            font-size: #{scaleValue(13.9)};
+            padding: #{scaleValue(15)};
+            cursor: pointer;
+            font-weight: 500;
+        }
+    }
+
+    &__subtypes {
+
+        &--h3 {
+            font-weight: 500;
+            font-size: #{scaleValue(17)};
+        }
+
+        &--h4 {
+            font-weight: 500;
+            font-size: #{scaleValue(15)};
+            padding: #{scaleValue(15)} 0;
+            font-size: #{scaleValue(13.9)};
+            border-bottom: $border;
+            border-color: rgba($landing-green, .8);
+            color: $landing-green;
+            padding: #{scaleValue(15)};
+
+            &.subtypeoptions {
+                padding: #{scaleValue(15)} 0;
+            }
+        }
+
+        &--h5 {
+            font-weight: 500;
+            font-size: #{scaleValue(13.9)};
+            padding: #{scaleValue(15)} 0;
+        }
+    }
+
+    &__subtype {
+        position: relative;
+        font-size: #{scaleValue(12)};
+        transition: all .5s ease;
+        padding: #{scaleValue(13.5)} #{scaleValue(15)};
+        border-bottom: $border;
+        font-weight: 400;
+
+        &:hover {
+            background: rgba($primary-color, .3);
+        }
+
+        &.selected {
+            background: rgba($primary-color, .5);
+        }
+    }
+
+    &__sliderinput {
+
+        &--inputarea {
+            
+            & input {
+                @include sliderInput
+            }
+        }
+
+        &--valuearea {
+            font-size: #{scaleValue(15)};
+            margin-top: #{scaleValue(10)};
+            color: $landing-green;
+        }
+    }
+
+    &__subtypeoptions {
+        margin-bottom: #{scaleValue(15)};
+    }
+
+    &__textarea {
+        
+        & textarea {
+            @include textArea
+        }
+    }
+    
+    &__inputarea {
+        margin-bottom: #{scaleValue(15)};
+    }
+}
+
+
+.margin-bottom {
+    margin-bottom: #{scaleValue(15)};
+}

@@ -1,0 +1,41 @@
+{
+  "ActivityCard": {
+    "description": "Auto imported from components/ActivityCard.vue"
+  },
+  "AgentsList": {
+    "description": "Auto imported from components/AgentsList.vue"
+  },
+  "AuthFeedback": {
+    "description": "Auto imported from components/AuthFeedback.vue"
+  },
+  "ClientEdit": {
+    "description": "Auto imported from components/ClientEdit.vue"
+  },
+  "ContactsList": {
+    "description": "Auto imported from components/ContactsList.vue"
+  },
+  "CreateClientForm": {
+    "description": "Auto imported from components/CreateClientForm.vue"
+  },
+  "DashboardHeader": {
+    "description": "Auto imported from components/DashboardHeader.vue"
+  },
+  "DocumentItem": {
+    "description": "Auto imported from components/DocumentItem.vue"
+  },
+  "ImageItem": {
+    "description": "Auto imported from components/ImageItem.vue"
+  },
+  "LeadsList": {
+    "description": "Auto imported from components/LeadsList.vue"
+  },
+  "List": {
+    "description": "Auto imported from components/List.vue"
+  },
+  "UploadCsv": {
+    "description": "Auto imported from components/UploadCsv.vue"
+  },
+  "VideoItem": {
+    "description": "Auto imported from components/VideoItem.vue"
+  }
+}

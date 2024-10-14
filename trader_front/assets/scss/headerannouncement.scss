@@ -1,0 +1,36 @@
+.headerannouncement {
+    min-height: #{scaleValue(40)};
+    background: $bitcoin-orange;
+    display: flex;
+    align-items: center;
+    font-weight: 700;
+    font-size: #{scaleValue(15)};
+    color: $black;
+
+    @media only screen and (max-width: 412px) {
+        font-size: #{scaleValue(60)};
+        padding: #{scaleValue(60)};
+    }
+
+
+    &.green {
+        background: $landing-green !important;
+        color: $white;
+        animation: moveinup 1s;
+        font-weight: 400 !important;
+        font-size: #{scaleValue(17)};
+        padding: #{scaleValue(10)};
+
+        @media only screen and (max-width: 412px) {
+            font-size: #{scaleValue(60)};
+            padding: #{scaleValue(60)};
+        }
+    }
+
+    &__announcement {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+}

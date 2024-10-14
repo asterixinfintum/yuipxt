@@ -1,0 +1,181 @@
+$swap-background: #2d3748;
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(-360deg);
+    }
+}
+
+.slideup {
+    background: rgba($swap-background, 0.2);
+
+    &__confirm {
+        background: #141A25;
+        padding: #{scaleValue(20)};
+
+        &--asset {
+            display: flex;
+            align-items: center;
+
+            & figure {
+                height: #{scaleValue(20)};
+                width: #{scaleValue(20)};
+                overflow: hidden;
+                border-radius: 100%;
+                margin-right: #{scaleValue(10)};
+
+                & img {
+                    height: 100%;
+                    width: 100%;
+                    object-fit: contain;
+                }
+            }
+
+            & p {
+                display: flex;
+                align-items: center;
+            }
+        }
+
+        &--header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: #{scaleValue(20)};
+
+            & span {
+                color: rgba($white, .6);
+
+                &.back {
+                    cursor: pointer;
+                    transform: rotate(90deg);
+
+                    & svg {
+                        height: #{scaleValue(20)};
+                        width: #{scaleValue(20)};
+
+                    }
+                }
+            }
+
+            & h3 {
+                font-weight: 500;
+                font-size: #{scaleValue(13)};
+            }
+        }
+
+        &--amount {
+            margin-bottom: #{scaleValue(30)};
+            font-size: #{scaleValue(13)};
+            text-align: center;
+
+            & span {
+
+                &.assetamount {
+                    color: rgba($white, .4);
+                }
+            }
+        }
+
+        &--details {
+            border-radius: #{scaleValue(10)};
+            padding: #{scaleValue(14)};
+            background: rgba($swap-background, 0.8);
+            margin-bottom: #{scaleValue(20)};
+        }
+
+        &--detailsarea {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            font-size: #{scaleValue(13)};
+            margin-bottom: #{scaleValue(14)};
+            color: rgba($white, .5);
+
+            &:last-child {
+                margin: 0;
+            }
+        }
+
+        &--btnarea {
+
+            button {
+                width: 100%;
+                background: $neon-green;
+                color: $black;
+                border: none;
+                outline: none;
+                border-radius: #{scaleValue(10)};
+                font-size: #{scaleValue(14)};
+                cursor: pointer;
+                padding: #{scaleValue(14)};
+            }
+        }
+    }
+
+    &__successful {}
+
+    &__submitting {
+        background: #141A25;
+        padding: #{scaleValue(20)};
+
+        &--loading {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-radius: 100%;
+            border-right: 3px solid $neon-green;
+            border-left: 3px solid $neon-green;
+            border-top: 3px solid transparent;
+            border-bottom: 3px solid transparent;
+            animation: spin 2s linear infinite;
+            height: #{scaleValue(60)};
+            width: #{scaleValue(60)};
+            margin: 0 auto;
+
+            & span {
+                color: $neon-green;
+
+                &.arrow {
+                    & svg {
+                        height: #{scaleValue(30)};
+                        width: #{scaleValue(30)};
+                        fill: $neon-green;
+                    }
+                }
+
+                &.left {
+                    transform: rotate(90deg);
+                }
+
+                &.right {
+                    transform: rotate(-90deg);
+                }
+            }
+        }
+
+        &--header {
+            margin-top: #{scaleValue(40)};
+            margin-bottom: #{scaleValue(20)};
+
+            & h3 {
+                font-weight: 500;
+                font-size: #{scaleValue(18)};
+                text-align: center;
+            }
+        }
+
+        &--details {
+            font-size: #{scaleValue(13)};
+            color: rgba($white, .5);
+            text-align: center;
+            margin-bottom: #{scaleValue(40)};
+        }
+    }
+}

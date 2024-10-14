@@ -1,0 +1,4 @@
+@function translateX($parent, $index) {
+  $translateValue: 10px + ($index * 1px);
+  @return $translateValue;
+}

@@ -1,0 +1,84 @@
+.dashboard {
+
+    &__list {
+        @include content;
+        overflow-x: scroll;
+        box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
+    }
+    
+    &__listitem {
+        grid-gap:  0;
+        padding: #{scaleValue(16)} #{scaleValue(10)};
+        font-size: #{scaleValue(13)};
+        font-weight: 500;
+        transition: all .3s ease;
+
+        &.tableitem {
+            cursor: pointer;
+
+            &:hover {
+                background: rgba(0, 0, 0, 0.1);
+            }
+        }
+
+        &:nth-child(odd) {
+            background: rgba($primary-color, .1);
+
+            &.tableitem {
+                cursor: pointer;
+            }
+        }
+
+        &--section {
+            border-right: 1px solid rgba($font-color, .2);
+            padding-right: #{scaleValue(10)};
+            text-transform: lowercase;
+
+            &.icons {
+                display: flex;
+            }
+
+            &:last-child {
+                border: none
+            }
+        }
+
+        &--checkbox {
+            display: flex;
+            align-items: center;
+            margin-right: #{scaleValue(16)};
+            cursor: pointer;
+        }
+
+        &--svg {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            margin-right: #{scaleValue(16)};
+
+            & svg {
+                fill: rgba($dark-graphite, .5);
+                height: #{scaleValue(13)};
+                width: #{scaleValue(13)};
+                display: inline-block;
+                transform: translateY(#{scaleValue(.5)});
+            }
+
+            &.clicked {
+                color: $metallic-gold;
+            }
+        }
+    }
+
+    &__listheader {
+        background: rgba(74, 78, 77, .1) !important;
+        font-weight: 600;
+        font-size: #{scaleValue(10.5)};
+        padding: #{scaleValue(18)} #{scaleValue(10)};
+
+        &--section {
+            text-transform: uppercase;
+            opacity: .8;
+        }
+    }
+}

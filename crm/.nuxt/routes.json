@@ -1,0 +1,121 @@
+[
+  {
+    "name": "activities",
+    "path": "/activities",
+    "component": "C:\\\\Users\\\\greg2\\\\Documents\\\\zks\\\\trader\\\\crm\\\\pages\\\\activities.vue",
+    "chunkName": "pages/activities",
+    "_name": "_624e38a6"
+  },
+  {
+    "name": "addannouncement",
+    "path": "/addannouncement",
+    "component": "C:\\\\Users\\\\greg2\\\\Documents\\\\zks\\\\trader\\\\crm\\\\pages\\\\addannouncement.vue",
+    "chunkName": "pages/addannouncement",
+    "_name": "_29c47058"
+  },
+  {
+    "name": "addcontact",
+    "path": "/addcontact",
+    "component": "C:\\\\Users\\\\greg2\\\\Documents\\\\zks\\\\trader\\\\crm\\\\pages\\\\addcontact.vue",
+    "chunkName": "pages/addcontact",
+    "_name": "_51ac031f"
+  },
+  {
+    "name": "addcsv",
+    "path": "/addcsv",
+    "component": "C:\\\\Users\\\\greg2\\\\Documents\\\\zks\\\\trader\\\\crm\\\\pages\\\\addcsv.vue",
+    "chunkName": "pages/addcsv",
+    "_name": "_56e56cf6"
+  },
+  {
+    "name": "addlead",
+    "path": "/addlead",
+    "component": "C:\\\\Users\\\\greg2\\\\Documents\\\\zks\\\\trader\\\\crm\\\\pages\\\\addlead.vue",
+    "chunkName": "pages/addlead",
+    "_name": "_5e71b8ed"
+  },
+  {
+    "name": "announcements",
+    "path": "/announcements",
+    "component": "C:\\\\Users\\\\greg2\\\\Documents\\\\zks\\\\trader\\\\crm\\\\pages\\\\announcements.vue",
+    "chunkName": "pages/announcements",
+    "_name": "_cf441808"
+  },
+  {
+    "name": "asset",
+    "path": "/asset",
+    "component": "C:\\\\Users\\\\greg2\\\\Documents\\\\zks\\\\trader\\\\crm\\\\pages\\\\asset.vue",
+    "chunkName": "pages/asset",
+    "_name": "_211c48e0"
+  },
+  {
+    "name": "assets",
+    "path": "/assets",
+    "component": "C:\\\\Users\\\\greg2\\\\Documents\\\\zks\\\\trader\\\\crm\\\\pages\\\\assets.vue",
+    "chunkName": "pages/assets",
+    "_name": "_06187443"
+  },
+  {
+    "name": "createasset",
+    "path": "/createasset",
+    "component": "C:\\\\Users\\\\greg2\\\\Documents\\\\zks\\\\trader\\\\crm\\\\pages\\\\createasset.vue",
+    "chunkName": "pages/createasset",
+    "_name": "_b017bd38"
+  },
+  {
+    "name": "editasset",
+    "path": "/editasset",
+    "component": "C:\\\\Users\\\\greg2\\\\Documents\\\\zks\\\\trader\\\\crm\\\\pages\\\\editasset.vue",
+    "chunkName": "pages/editasset",
+    "_name": "_41959a16"
+  },
+  {
+    "name": "viewagents",
+    "path": "/viewagents",
+    "component": "C:\\\\Users\\\\greg2\\\\Documents\\\\zks\\\\trader\\\\crm\\\\pages\\\\viewagents.vue",
+    "chunkName": "pages/viewagents",
+    "_name": "_778cbdb3"
+  },
+  {
+    "name": "viewcontacts",
+    "path": "/viewcontacts",
+    "component": "C:\\\\Users\\\\greg2\\\\Documents\\\\zks\\\\trader\\\\crm\\\\pages\\\\viewcontacts.vue",
+    "chunkName": "pages/viewcontacts",
+    "_name": "_011b8638"
+  },
+  {
+    "name": "viewleads",
+    "path": "/viewleads",
+    "component": "C:\\\\Users\\\\greg2\\\\Documents\\\\zks\\\\trader\\\\crm\\\\pages\\\\viewleads.vue",
+    "chunkName": "pages/viewleads",
+    "_name": "_828ffbfc"
+  },
+  {
+    "name": "index",
+    "path": "/",
+    "component": "C:\\\\Users\\\\greg2\\\\Documents\\\\zks\\\\trader\\\\crm\\\\pages\\\\index.vue",
+    "chunkName": "pages/index",
+    "_name": "_bad6747c"
+  },
+  {
+    "name": "admin-dashboard",
+    "path": "/admin/:dashboard?",
+    "component": "C:\\\\Users\\\\greg2\\\\Documents\\\\zks\\\\trader\\\\crm\\\\pages\\\\admin\\\\_dashboard.vue",
+    "chunkName": "pages/admin/_dashboard",
+    "_name": "_68d6d554"
+  },
+  {
+    "name": "client-client_id",
+    "path": "/client/:client_id?",
+    "component": "C:\\\\Users\\\\greg2\\\\Documents\\\\zks\\\\trader\\\\crm\\\\pages\\\\client\\\\_client_id.vue",
+    "chunkName": "pages/client/_client_id",
+    "_name": "_7f597fca"
+  },
+  {
+    "name": "editclient-client_id",
+    "path": "/editclient/:client_id?",
+    "component": "C:\\\\Users\\\\greg2\\\\Documents\\\\zks\\\\trader\\\\crm\\\\pages\\\\editclient\\\\_client_id.vue",
+    "chunkName": "pages/editclient/_client_id",
+    "_name": "_83e3d2b6"
+  }
+]

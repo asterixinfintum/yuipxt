@@ -1,0 +1,45 @@
+@function scaleValue($value) {
+    @return calc(
+        #{$value} * (clamp(350px, 100vw, 3840px) / var(--ideal-viewport-width))
+    );
+}
+
+$black-background: #0d0e0f;
+$white: #fff;
+$primary-color: #db4124;
+$index-body: #111214;
+$border: .2px solid rgba($white, .3);
+$colored-border: .2px solid rgba($primary-color, .7);
+$red: #e9485a;
+$neon-orange: #FF3F34;
+$neon-green: #39FF14;
+$warning-red: red;
+$green: #31c48a;
+$black: #000000;
+$light-black: #1e1e1e;
+$greyed-out: #5E6673;
+$faded-black: rgb(43, 49, 57);
+$success: rgb(14, 203, 129);
+$dashed-border: 1px dashed rgb(132, 142, 156);
+$current: rgba($greyed-out, .6);
+$popup-background: rgba($light-black, .6);
+$light-font-color: rgba(255, 255, 255, 0.92);
+$defipopup-body: #2D3748;
+$landing-primary: #141d22;
+$landing-green: #14964f;
+$box-radius: #{scaleValue(8)};
+$second-border-color: #e6e8f1;
+$basic-landing-area-padding: 0 #{scaleValue(170)};
+$traderview-background: #1e222d;
+$warning-background: rgb(254, 241, 242);
+$menu-dropdown-background: rgb(30, 35, 41);
+$bitcoin-orange: #F7931A;
+$usdt-green: #00B4A0;
+$arbsec-width: #{scaleValue(395)};
+$arbsec-width-double: #{scaleValue(790)};
+$blur-primary: rgba($primary-color, .1);
+$blur: rgba($greyed-out, .1);
+$gold: #FFD700;
+$neon-blue: #00FFFF;
+$neon-yellow: #CCFF00;
+$neon-pink: #FF6EC7;

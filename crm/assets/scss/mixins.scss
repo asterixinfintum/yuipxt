@@ -1,0 +1,94 @@
+@mixin full-screen-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background: rgba(0, 0, 0, .3);
+  z-index: 3;
+}
+
+@mixin loading-spinner {
+    animation: spin 0.8s linear infinite;
+    border: #{scaleValue(5)} solid $primary-color;
+    border-right: #{scaleValue(5)} solid transparent;
+    border-radius: 100%;
+    height: #{scaleValue(60)};
+    width: #{scaleValue(60)};
+    background: transparent;
+    margin: 0 auto;
+
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+}
+
+@mixin container {
+    position: relative;
+
+    &::after {
+        position: absolute;
+        content: '';
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: #{scaleValue(230)};
+        background: $primary-color;
+        z-index: 1;
+    }
+}
+
+@mixin content {
+    background: $white;
+    min-height: #{scaleValue(850)};
+}
+
+@mixin input-style {
+  width: $area-width;
+  height:  #{scaleValue(45)};
+  border: 1px solid rgba($primary-color, .2);
+  border-radius:  #{scaleValue(15)};
+  padding: 0 #{scaleValue(15)};
+  font-size: #{scaleValue(15)};
+  outline: none;
+  margin-bottom: #{scaleValue(26)};
+}
+
+@mixin input-label-style {
+  font-size: #{scaleValue(13)};
+  font-weight: 400;
+  display: inline-block;
+  margin-bottom: #{scaleValue(13)};
+}
+
+@mixin h1 {
+  font-weight: 400;
+  font-size: #{scaleValue(30)};
+  margin-bottom: #{scaleValue(6)};
+}
+
+@mixin h2 {
+
+}
+
+@mixin btn-primary {
+  background: $primary-color;
+  border: none;
+  outline: none;
+  color: $white;
+  font-size: #{scaleValue(17)};
+  font-weight: 300;
+  border-radius: #{scaleValue(15)};
+  font-weight: 400;
+  cursor: pointer;
+}
+
+@mixin base-container-style {
+  @include container;
+
+    &__content {
+        @include content;  
+    }
+}

@@ -1,0 +1,67 @@
+.base {
+    position: relative;
+    min-height: #{scaleValue(700)};
+    background: $white;
+    padding: #{scaleValue(5)};
+  
+    &__content {
+      display: flex;
+      height: 100%;
+    }
+  
+    &__harea {
+      margin-bottom: #{scaleValue(70)};
+    }
+  
+    &__left {
+      padding-top: #{scaleValue(160)};
+      padding-left: #{scaleValue(80)};
+  
+      width: #{scaleValue(900)};
+  
+      & h1 {
+        @include h1;
+      }
+  
+      & h2 {
+        font-weight: 300;
+        font-size: #{scaleValue(15)};
+      }
+    }
+  
+    &__right {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      width: #{scaleValue(800)};
+      padding: #{scaleValue(20)} 0;
+  
+  
+      &--background {
+        background: $primary-color;
+        border-radius: #{scaleValue(20)};
+        height: #{scaleValue(900)};
+        width: 100%;
+      }
+    }
+  
+    &__rightharea {
+      color: $white;
+      height: 100%;
+      width: 100%;
+      padding:  0 #{scaleValue(75)};
+      padding-top: #{scaleValue(150)};
+  
+      & h2 {
+        font-weight: 400;
+        font-size: #{scaleValue(25)};
+        margin-bottom: #{scaleValue(6)};
+      }
+  
+      & h3 {
+        font-weight: 300;
+        font-size: #{scaleValue(14)};
+      }
+    }
+  }
