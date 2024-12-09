@@ -34,6 +34,13 @@ services:
     environment:
       - PORT=8002
 
+  walletapi:
+    container_name: walletapi
+    restart: always
+    build: ./walletapi
+    environment:
+      - PORT=8003
+
   nuxt-app:
     build: ./trader_front
     container_name: nuxt-app
