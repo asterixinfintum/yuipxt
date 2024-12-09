@@ -4,3 +4,4 @@ zplayground/
 bitcoinplayground/
 nginx/default.conf
 Dockerfile
+walletapi/
