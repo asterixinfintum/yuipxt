@@ -36,12 +36,12 @@
                 >Crypto</span
               >
 
-              <span
+              <!--<span
                 @click.stop="withdrawalMethodToggle('bank')"
                 class="button"
                 :class="{ currentmethod: withdrawalmthd === 'bank' }"
                 >Bank</span
-              >
+              >-->
             </div>
           </div>
           <div class="transactionstyle__subject--closebtn" @click="close">
