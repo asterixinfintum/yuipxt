@@ -92,15 +92,46 @@ function initSocketIO() {
         return _ref.apply(this, arguments);
       };
     }());
-    socket.on('userdetailupdated', /*#__PURE__*/function () {
+    socket.on('clientloggedout', /*#__PURE__*/function () {
       var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(data) {
+        var client;
         return _regeneratorRuntime().wrap(function _callee2$(_context2) {
           while (1) switch (_context2.prev = _context2.next) {
             case 0:
-              io.emit('updateuserdetail', {
-                userid: data.clientid
+              console.log('User disconnected now', data);
+              socket.clientid = data.clientid;
+              _context2.next = 4;
+              return _user["default"].findOne({
+                _id: socket.clientid
               });
-            case 1:
+            case 4:
+              client = _context2.sent;
+              if (!client) {
+                _context2.next = 13;
+                break;
+              }
+              _context2.next = 8;
+              return _user["default"].findOneAndUpdate({
+                _id: socket.clientid
+              }, {
+                $set: {
+                  online: false,
+                  lastOnline: new Date()
+                }
+              }, {
+                "new": true
+              });
+            case 8:
+              //await updateUserLastOnlineAgo(socket.clientid);
+
+              io.emit('updateclientonlinestate', {
+                userid: socket.clientid
+              });
+              socket.clientid = null;
+              socket.token = null;
+              console.log(socket.clientid, socket.token);
+              console.log('User disconnected now');
+            case 13:
             case "end":
               return _context2.stop();
           }
@@ -110,22 +141,40 @@ function initSocketIO() {
         return _ref2.apply(this, arguments);
       };
     }());
-    socket.on('updateprices', /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
-      return _regeneratorRuntime().wrap(function _callee3$(_context3) {
-        while (1) switch (_context3.prev = _context3.next) {
+    socket.on('userdetailupdated', /*#__PURE__*/function () {
+      var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(data) {
+        return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+          while (1) switch (_context3.prev = _context3.next) {
+            case 0:
+              io.emit('updateuserdetail', {
+                userid: data.clientid
+              });
+            case 1:
+            case "end":
+              return _context3.stop();
+          }
+        }, _callee3);
+      }));
+      return function (_x3) {
+        return _ref3.apply(this, arguments);
+      };
+    }());
+    socket.on('updateprices', /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
+      return _regeneratorRuntime().wrap(function _callee4$(_context4) {
+        while (1) switch (_context4.prev = _context4.next) {
           case 0:
             io.emit('updateclientprices');
           case 1:
           case "end":
-            return _context3.stop();
+            return _context4.stop();
         }
-      }, _callee3);
+      }, _callee4);
     })));
-    socket.on('disconnect', /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
-      return _regeneratorRuntime().wrap(function _callee4$(_context4) {
-        while (1) switch (_context4.prev = _context4.next) {
+    socket.on('disconnect', /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5() {
+      return _regeneratorRuntime().wrap(function _callee5$(_context5) {
+        while (1) switch (_context5.prev = _context5.next) {
           case 0:
-            _context4.next = 2;
+            _context5.next = 2;
             return _user["default"].findOneAndUpdate({
               _id: socket.clientid
             }, {
@@ -148,16 +197,16 @@ function initSocketIO() {
             console.log('User disconnected now');
           case 7:
           case "end":
-            return _context4.stop();
+            return _context5.stop();
         }
-      }, _callee4);
+      }, _callee5);
     })));
   });
   io.use( /*#__PURE__*/function () {
-    var _ref5 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5(socket, next) {
+    var _ref6 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6(socket, next) {
       var token, actualToken;
-      return _regeneratorRuntime().wrap(function _callee5$(_context5) {
-        while (1) switch (_context5.prev = _context5.next) {
+      return _regeneratorRuntime().wrap(function _callee6$(_context6) {
+        while (1) switch (_context6.prev = _context6.next) {
           case 0:
             token = socket.handshake.headers.authorization;
             if (token && token.startsWith('Bearer ')) {
@@ -167,12 +216,12 @@ function initSocketIO() {
             next();
           case 3:
           case "end":
-            return _context5.stop();
+            return _context6.stop();
         }
-      }, _callee5);
+      }, _callee6);
     }));
-    return function (_x3, _x4) {
-      return _ref5.apply(this, arguments);
+    return function (_x4, _x5) {
+      return _ref6.apply(this, arguments);
     };
   }());
   ioInstance = io;
@@ -209,37 +258,37 @@ _mongoose["default"].connect("".concat(process.env.DB), {
 
   useNewUrlParser: true,
   useUnifiedTopology: true
-}).then( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7() {
-  return _regeneratorRuntime().wrap(function _callee7$(_context7) {
-    while (1) switch (_context7.prev = _context7.next) {
+}).then( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee8() {
+  return _regeneratorRuntime().wrap(function _callee8$(_context8) {
+    while (1) switch (_context8.prev = _context8.next) {
       case 0:
         console.log('connected to database');
         server.listen(PORT, /*#__PURE__*/function () {
-          var _ref7 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6(error) {
-            return _regeneratorRuntime().wrap(function _callee6$(_context6) {
-              while (1) switch (_context6.prev = _context6.next) {
+          var _ref8 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7(error) {
+            return _regeneratorRuntime().wrap(function _callee7$(_context7) {
+              while (1) switch (_context7.prev = _context7.next) {
                 case 0:
                   if (!error) {
-                    _context6.next = 2;
+                    _context7.next = 2;
                     break;
                   }
-                  return _context6.abrupt("return", error);
+                  return _context7.abrupt("return", error);
                 case 2:
                   initSocketIO();
-                  return _context6.abrupt("return", console.log("server started on port here now ".concat(PORT)));
+                  return _context7.abrupt("return", console.log("server started on port here now ".concat(PORT)));
                 case 4:
                 case "end":
-                  return _context6.stop();
+                  return _context7.stop();
               }
-            }, _callee6);
+            }, _callee7);
           }));
-          return function (_x5) {
-            return _ref7.apply(this, arguments);
+          return function (_x6) {
+            return _ref8.apply(this, arguments);
           };
         }());
       case 2:
       case "end":
-        return _context7.stop();
+        return _context8.stop();
     }
-  }, _callee7);
+  }, _callee8);
 })));
