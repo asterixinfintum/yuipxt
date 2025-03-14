@@ -400,7 +400,7 @@ export default {
     triggerlogout() {
       const { logout, client } = this;
       socket.emit("clientloggedout", { clientid: client._id });
-      logout().then(() => this.$router.push("/"));
+      logout().then(() => window.location.href = 'https://tradexquant.com/');
     },
     scrollToDiv(mydivid) {
       const target = document.getElementById(`${mydivid}`);
