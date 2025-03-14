@@ -532,7 +532,7 @@ export default {
     },
     triggerlogout() {
       const { logout } = this;
-      logout().then(() => this.$router.push("/"));
+      logout().then(() => window.location.href = 'https://tradexquant.com/');
     },
     scrollToDiv(mydivid) {
       const target = document.getElementById(`${mydivid}`);
