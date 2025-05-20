@@ -489,12 +489,13 @@ export default {
 
       if (this.assettowithdraw) {
         if (this.assettowithdraw.blc) {
-          if (
-            Number(this.withdrawalinput.replace(/,/g, "")) >
-            Number(this.assettowithdraw.blc.replace(/,/g, ""))
+          //console.log(this.assettowithdraw)
+          /*if (
+            //Number(this.withdrawalinput.replace(/,/g, "")) >
+            //Number(this.assettowithdraw.blc.replace(/,/g, ""))
           ) {
             return false;
-          }
+          }*/
         }
       }
 
