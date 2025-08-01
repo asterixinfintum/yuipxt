@@ -5,21 +5,105 @@
         padding-top: #{scaleValue(150)};
         display: flex;
         flex-direction: column;
+
+        @media only screen and (max-width: $breakpoint-tablet) {
+            padding: 0;
+            justify-content: center;
+            align-items: center;
+            padding-top: #{scaleValue(300)};
+        }
+
+        @media only screen and (max-width: $breakpoint-mobile-large) {
+            padding: 0;
+            justify-content: center;
+            align-items: center;
+            padding-top: #{scaleValue(300)};
+        }
+
+        @media only screen and (max-width: $breakpoint-mobile-medium) {
+            padding: 0;
+            justify-content: center;
+            align-items: center;
+            padding-top: #{scaleValue(300)};
+        }
+
+        @media only screen and (max-width: $breakpoint-mobile-small) {
+            padding: 0;
+            justify-content: center;
+            align-items: center;
+            padding-top: #{scaleValue(300)};
+        }
     }
 
     &__h1 {
         font-weight: 500;
         font-size: #{scaleValue(25)};
         margin-bottom: #{scaleValue(40)};
+
+        @media only screen and (max-width: $breakpoint-tablet) {
+            font-size: #{scaleValue(70)};
+            margin-bottom: #{scaleValue(250)};
+        }
+
+        @media only screen and (max-width: $breakpoint-mobile-large) {
+            font-size: #{scaleValue(70)};
+            margin-bottom: #{scaleValue(250)};
+        }
+
+        @media only screen and (max-width: $breakpoint-mobile-medium) {
+            font-size: #{scaleValue(70)};
+            margin-bottom: #{scaleValue(250)};
+        }
+
+        @media only screen and (max-width: $breakpoint-mobile-small) {
+            font-size: #{scaleValue(70)};
+            margin-bottom: #{scaleValue(250)};
+        }
     }
 
     &__inputarea {
         margin-bottom: #{scaleValue(30)};
 
+        @media only screen and (max-width: $breakpoint-tablet) {
+            margin-bottom: #{scaleValue(120)};
+        }
+
+        @media only screen and (max-width: $breakpoint-mobile-large) {
+            margin-bottom: #{scaleValue(120)};
+        }
+
+        @media only screen and (max-width: $breakpoint-mobile-medium) {
+            margin-bottom: #{scaleValue(120)};
+        }
+
+        @media only screen and (max-width: $breakpoint-mobile-small) {
+            margin-bottom: #{scaleValue(120)};
+        }
+
         &--label {
             display: flex;
             align-items: center;
             margin-bottom: #{scaleValue(5)};
+
+            @media only screen and (max-width: $breakpoint-tablet) {
+                margin-bottom: #{scaleValue(70)};
+                font-size: #{scaleValue(70)};
+            }
+
+            @media only screen and (max-width: $breakpoint-mobile-large) {
+                margin-bottom: #{scaleValue(70)};
+                font-size: #{scaleValue(70)};
+            }
+
+            @media only screen and (max-width: $breakpoint-mobile-medium) {
+                margin-bottom: #{scaleValue(70)};
+                font-size: #{scaleValue(70)};
+            }
+
+            @media only screen and (max-width: $breakpoint-mobile-small) {
+                margin-bottom: #{scaleValue(70)};
+                font-size: #{scaleValue(70)};
+            }
 
             &.withdrawal {
                 font-size: #{scaleValue(10)} !important;
@@ -58,6 +142,26 @@
                 align-items: center;
                 top: 0;
                 right: 0;
+
+                @media only screen and (max-width: $breakpoint-tablet) {
+                    height: #{scaleValue(120)};
+                    width: #{scaleValue(100)};
+                }
+
+                @media only screen and (max-width: $breakpoint-mobile-large) {
+                    height: #{scaleValue(120)};
+                    width: #{scaleValue(100)};
+                }
+
+                @media only screen and (max-width: $breakpoint-mobile-medium) {
+                    height: #{scaleValue(120)};
+                    width: #{scaleValue(100)};
+                }
+
+                @media only screen and (max-width: $breakpoint-mobile-small) {
+                    height: #{scaleValue(120)};
+                    width: #{scaleValue(100)};
+                }
             }
 
             & input {
@@ -67,6 +171,34 @@
                 width: #{scaleValue(400)};
                 height: #{scaleValue(50)};
                 padding: #{scaleValue(15)};
+
+                @media only screen and (max-width: $breakpoint-tablet) {
+                    width: #{scaleValue(1446)};
+                    height: #{scaleValue(240)};
+                    padding: #{scaleValue(40)};
+                    font-size: #{scaleValue(70)};
+                }
+
+                @media only screen and (max-width: $breakpoint-mobile-large) {
+                    width: #{scaleValue(1446)};
+                    height: #{scaleValue(240)};
+                    padding: #{scaleValue(40)};
+                    font-size: #{scaleValue(70)};
+                }
+
+                @media only screen and (max-width: $breakpoint-mobile-medium) {
+                    width: #{scaleValue(1446)};
+                    height: #{scaleValue(240)};
+                    padding: #{scaleValue(40)};
+                    font-size: #{scaleValue(70)};
+                }
+
+                @media only screen and (max-width: $breakpoint-mobile-small) {
+                    width: #{scaleValue(1446)};
+                    height: #{scaleValue(240)};
+                    padding: #{scaleValue(40)};
+                    font-size: #{scaleValue(70)};
+                }
 
                 &.withdrawal {
                     width: 100%
@@ -102,6 +234,22 @@
         width: #{scaleValue(400)};
         margin-bottom: #{scaleValue(30)};
         flex-direction: column;
+
+        @media only screen and (max-width: $breakpoint-tablet) {
+            width: #{scaleValue(1446)};
+        }
+
+        @media only screen and (max-width: $breakpoint-mobile-large) {
+            width: #{scaleValue(1446)};
+        }
+
+        @media only screen and (max-width: $breakpoint-mobile-medium) {
+            width: #{scaleValue(1446)};
+        }
+
+        @media only screen and (max-width: $breakpoint-mobile-small) {
+            width: #{scaleValue(1446)};
+        }
     }
 
     &__termsarea {
@@ -115,6 +263,22 @@
     &__termsdescription {
         font-size: #{scaleValue(14)};
 
+        @media only screen and (max-width: $breakpoint-tablet) {
+            font-size: #{scaleValue(70)};
+        }
+
+        @media only screen and (max-width: $breakpoint-mobile-large) {
+            font-size: #{scaleValue(70)};
+        }
+
+        @media only screen and (max-width: $breakpoint-mobile-medium) {
+            font-size: #{scaleValue(70)};
+        }
+
+        @media only screen and (max-width: $breakpoint-mobile-small) {
+            font-size: #{scaleValue(70)};
+        }
+
         &--p {
 
             & span {
@@ -124,6 +288,22 @@
                     font-size: #{scaleValue(15)};
                     color: $primary-color;
                     cursor: pointer;
+
+                    @media only screen and (max-width: $breakpoint-tablet) {
+                        font-size: #{scaleValue(71)};
+                    }
+
+                    @media only screen and (max-width: $breakpoint-mobile-large) {
+                        font-size: #{scaleValue(71)};
+                    }
+
+                    @media only screen and (max-width: $breakpoint-mobile-medium) {
+                        font-size: #{scaleValue(71)};
+                    }
+
+                    @media only screen and (max-width: $breakpoint-mobile-small) {
+                        font-size: #{scaleValue(71)};
+                    }
                 }
             }
         }
@@ -133,6 +313,26 @@
             color: $red;
             width: #{scaleValue(400)};
             margin-top: #{scaleValue(10)};
+
+            @media only screen and (max-width: $breakpoint-tablet) {
+                font-size: #{scaleValue(71)};
+                width: #{scaleValue(1446)};
+            }
+
+            @media only screen and (max-width: $breakpoint-mobile-large) {
+                font-size: #{scaleValue(71)};
+                width: #{scaleValue(1446)};
+            }
+
+            @media only screen and (max-width: $breakpoint-mobile-medium) {
+                font-size: #{scaleValue(71)};
+                width: #{scaleValue(1446)};
+            }
+
+            @media only screen and (max-width: $breakpoint-mobile-small) {
+                font-size: #{scaleValue(71)};
+                width: #{scaleValue(1446)};
+            }
         }
     }
 
@@ -140,5 +340,29 @@
         width: #{scaleValue(400)};
         height: #{scaleValue(50)};
         font-size: #{scaleValue(15)};
+
+        @media only screen and (max-width: $breakpoint-tablet) {
+            width: #{scaleValue(1446)};
+            height: #{scaleValue(200)};
+            font-size: #{scaleValue(70)};
+        }
+
+        @media only screen and (max-width: $breakpoint-mobile-large) {
+            width: #{scaleValue(1446)};
+            height: #{scaleValue(200)};
+            font-size: #{scaleValue(70)};
+        }
+
+        @media only screen and (max-width: $breakpoint-mobile-medium) {
+            width: #{scaleValue(1446)};
+            height: #{scaleValue(200)};
+            font-size: #{scaleValue(70)};
+        }
+
+        @media only screen and (max-width: $breakpoint-mobile-small) {
+            width: #{scaleValue(1446)};
+            height: #{scaleValue(200)};
+            font-size: #{scaleValue(70)};
+        }
     }
 }
