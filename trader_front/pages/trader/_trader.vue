@@ -1937,6 +1937,7 @@ export default {
       }
     },
     getpairs() {
+      console.log(this.baseassetsmenu)
       try {
         fetch(`${BASE_URL}/trader/pairs?assetmenu=${this.baseassetsmenu}`, {
           method: "GET",
