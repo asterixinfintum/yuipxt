@@ -92,6 +92,9 @@ import asset_route from './assets/controller';
 
 import usersettings from './routes/usersettings';
 
+import generateFiatTradingPairs from './functions/generateFiatTradingPairs';
+import generatetradingpairs from './functions/generatetradingpairs';
+
 import './userdashboard';
 
 /*function initSocketIO() {
@@ -250,6 +253,11 @@ mongoose.connect(`${process.env.DB}`, {
     seedAssets({ assetType: 'commodity' });
     seedAssets({ assetType: 'fiat' });
   }
+
+  seedAssets({ assetType: 'fiat' });
+
+  //generateFiatTradingPairs()
+  generatetradingpairs()
 
   server.listen(PORT, async (error) => {
     if (error) {

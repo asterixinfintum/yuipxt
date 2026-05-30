@@ -211,6 +211,86 @@ var allowedpairs = [{
   pairlabel: "OKX:TRXBTC",
   pair: "TRX/BTC"
 }, {
+  type: "fiat",
+  pairlabel: "FX_IDC:EURUSD",
+  pair: "EUR/USD"
+}, {
+  type: "fiat",
+  pairlabel: "FX_IDC:USDJPY",
+  pair: "USD/JPY"
+}, {
+  type: "fiat",
+  pairlabel: "FX_IDC:GBPUSD",
+  pair: "GBP/USD"
+}, {
+  type: "fiat",
+  pairlabel: "FX_IDC:AUDUSD",
+  pair: "AUD/USD"
+}, {
+  type: "fiat",
+  pairlabel: "FX_IDC:USDCAD",
+  pair: "USD/CAD"
+}, {
+  type: "fiat",
+  pairlabel: "FX_IDC:USDCHF",
+  pair: "USD/CHF"
+}, {
+  type: "fiat",
+  pairlabel: "FX_IDC:NZDUSD",
+  pair: "NZD/USD"
+}, {
+  type: "fiat",
+  pairlabel: "FX_IDC:EURGBP",
+  pair: "EUR/GBP"
+}, {
+  type: "fiat",
+  pairlabel: "FX_IDC:EURJPY",
+  pair: "EUR/JPY"
+}, {
+  type: "fiat",
+  pairlabel: "FX_IDC:GBPJPY",
+  pair: "GBP/JPY"
+}, {
+  type: "fiat",
+  pairlabel: "FX_IDC:GBPCHF",
+  pair: "GBP/CHF"
+}, {
+  type: "fiat",
+  pairlabel: "FX_IDC:EURCAD",
+  pair: "EUR/CAD"
+}, {
+  type: "fiat",
+  pairlabel: "FX_IDC:EURNZD",
+  pair: "EUR/NZD"
+}, {
+  type: "fiat",
+  pairlabel: "FX_IDC:GBPAUD",
+  pair: "GBP/AUD"
+}, {
+  type: "fiat",
+  pairlabel: "FX_IDC:CADJPY",
+  pair: "CAD/JPY"
+}, {
+  type: "fiat",
+  pairlabel: "FX_IDC:CHFJPY",
+  pair: "CHF/JPY"
+}, {
+  type: "fiat",
+  pairlabel: "FX_IDC:AUDJPY",
+  pair: "AUD/JPY"
+}, {
+  type: "fiat",
+  pairlabel: "FX_IDC:NZDJPY",
+  pair: "NZD/JPY"
+}, {
+  type: "fiat",
+  pairlabel: "FX_IDC:EURSGD",
+  pair: "EUR/SGD"
+}, {
+  type: "fiat",
+  pairlabel: "FX_IDC:USDSGD",
+  pair: "USD/SGD"
+}, {
   type: 'crypto',
   pairlabel: "BINANCE:TRXXRP",
   pair: "TRX/XRP"

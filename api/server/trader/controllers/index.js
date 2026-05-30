@@ -15,9 +15,13 @@ tradercontroller.get('/trader/pairs', async (req, res) => {
     try {
         const { assetmenu } = req.query;
 
+        console.log(assetmenu, 'assetmenu');
+
         if (assetmenu) {
             const pairs = await allowedpairs();
             const filteredpairs = pairs.filter(pair => pair.type === assetmenu);
+
+            console.log(filteredpairs);
 
             res.status(200).send({ pairs: filteredpairs });
             return;

@@ -30,38 +30,40 @@ tradercontroller.get('/trader/pairs', /*#__PURE__*/function () {
         case 0:
           _context.prev = 0;
           assetmenu = req.query.assetmenu;
+          console.log(assetmenu, 'assetmenu');
           if (!assetmenu) {
-            _context.next = 9;
+            _context.next = 11;
             break;
           }
-          _context.next = 5;
+          _context.next = 6;
           return (0, _allowedpairs["default"])();
-        case 5:
+        case 6:
           pairs = _context.sent;
           filteredpairs = pairs.filter(function (pair) {
             return pair.type === assetmenu;
           });
+          console.log(filteredpairs);
           res.status(200).send({
             pairs: filteredpairs
           });
           return _context.abrupt("return");
-        case 9:
+        case 11:
           res.status(200).send({
             pairs: _allowedpairs["default"]
           });
-          _context.next = 15;
+          _context.next = 17;
           break;
-        case 12:
-          _context.prev = 12;
+        case 14:
+          _context.prev = 14;
           _context.t0 = _context["catch"](0);
           res.status(500).send({
             error: 'An error occurred'
           });
-        case 15:
+        case 17:
         case "end":
           return _context.stop();
       }
-    }, _callee, null, [[0, 12]]);
+    }, _callee, null, [[0, 14]]);
   }));
   return function (_x, _x2) {
     return _ref.apply(this, arguments);

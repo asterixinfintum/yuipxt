@@ -26,6 +26,10 @@ async function seedAssets({ assetType, assetId }) {
 
     const existassets = await Asset.find({ assetType });
 
+    if (assetType === 'fiat') {
+        await seed(fiat, assetType)
+    }
+
     if (existassets.length) {
         return;
     } else {
@@ -61,7 +65,6 @@ async function seed(assetSymbols, assetType) {
                 image,
             });
 
-            console.log('seeded')
         } catch (error) {
             console.log('error:', error, symbol);
         }
@@ -71,6 +74,20 @@ async function seed(assetSymbols, assetType) {
 async function createAsset({ name, coin, symbol, assetType, image }) {
     return new Promise(async (resolve, reject) => {
         try {
+            // Check if asset already exists by name, symbol, and assetType
+            const existingAsset = await Asset.findOne({
+                name: name,
+                symbol: symbol,
+                assetType: assetType
+            });
+
+            // If asset exists, skip creation and return the existing one
+            if (existingAsset) {
+                console.log(`Asset already exists: ${name} (${symbol}) - skipping creation`);
+                return resolve(existingAsset);
+            }
+
+            // Create new asset if it doesn't exist
             const asset = {
                 name,
                 coin,
@@ -78,14 +95,15 @@ async function createAsset({ name, coin, symbol, assetType, image }) {
                 assetType,
                 price: '1',
                 image
-            }
+            };
 
             const newAsset = new Asset(asset);
             const savedAsset = await newAsset.save();
             resolve(savedAsset);
+            console.log('seeded')
         } catch (error) {
             console.log('error:', error, symbol);
-            reject('error:', error, symbol);
+            reject(error);
         }
     });
 }
