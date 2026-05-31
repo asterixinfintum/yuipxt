@@ -1,7 +1,7 @@
 let BASE_URL;
 let DEVELOPMENT;
 
-DEVELOPMENT = false;
+DEVELOPMENT = true;
 
 if (DEVELOPMENT) {
     BASE_URL = 'http://localhost:8082';

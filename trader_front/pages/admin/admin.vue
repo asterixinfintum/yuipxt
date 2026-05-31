@@ -38,7 +38,7 @@
 let url;
 let DEVELOPMENT;
 
-DEVELOPMENT = false;
+DEVELOPMENT = true;
 
 if (DEVELOPMENT) {
   url = "http://localhost:8082";

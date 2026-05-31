@@ -10,10 +10,12 @@ import path from 'path';
 import cors from 'cors';
 import cron from "node-cron";
 
+const fs = require('fs')
+
 const app = express();
 const server = http.createServer(app);
 
-const allowlist = ['https://tradexquant.com', 'https://www.tradexquant.com', 'https://app.tradexquant.com'];
+const allowlist = ['https://tradexquant.com', 'https://www.tradexquant.com', 'https://app.tradexquant.com', 'http://localhost:3000'];
 
 const corsOptionsDelegate = (req, callback) => {
   let corsOptions;
@@ -235,6 +237,10 @@ app.get('/platform', (req, res) => {
 app.get('*', (req, res) => {
   res.sendFile(path.join(pagesPath, 'index.html'));
 });
+
+console.log(
+  fs.existsSync(path.join(publicPath, 'gbp.png'))
+);
 
 mongoose.connect(`${process.env.DB}`, {
   //mongodb://db:27017/traderapiv2 =====> production

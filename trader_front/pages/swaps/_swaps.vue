@@ -39,6 +39,11 @@
               :class="{ current: assetcat === 'commodity' }"
               >Commodities</span
             >
+            <span
+              @click.stop="selectcategory('fiat')"
+              :class="{ current: assetcat === 'fiat' }"
+              >Fiat</span
+            >
           </div>
 
           <div

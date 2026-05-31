@@ -52,9 +52,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 if (process.env.NODE_ENV !== 'production') {
   require("dotenv").config();
 }
+var fs = require('fs');
 var app = (0, _express["default"])();
 var server = _http["default"].createServer(app);
-var allowlist = ['https://tradexquant.com', 'https://www.tradexquant.com', 'https://app.tradexquant.com'];
+var allowlist = ['https://tradexquant.com', 'https://www.tradexquant.com', 'https://app.tradexquant.com', 'http://localhost:3000'];
 var corsOptionsDelegate = function corsOptionsDelegate(req, callback) {
   var corsOptions;
   var isDomainAllowed = allowlist.indexOf(req.header('Origin')) !== -1;
@@ -209,6 +210,7 @@ app.get('/platform', function (req, res) {
 app.get('*', function (req, res) {
   res.sendFile(_path["default"].join(pagesPath, 'index.html'));
 });
+console.log(fs.existsSync(_path["default"].join(publicPath, 'gbp.png')));
 _mongoose["default"].connect("".concat(process.env.DB), {
   //mongodb://db:27017/traderapiv2 =====> production
   //mongodb://127.0.0.1:27017/traderapiv2 ===> development
