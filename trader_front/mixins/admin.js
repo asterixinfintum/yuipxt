@@ -16,7 +16,7 @@ export default {
             if (DEVELOPMENT) {
                 url = "http://localhost:8082";
             } else {
-                url = "https://api.tradexquant.com";
+                url = "https://api.bsn.finance";
             }
 
             return url;

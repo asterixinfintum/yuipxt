@@ -341,7 +341,7 @@ export default {
         });
     },
     routeToHomeTrade() {
-      const url = "https://tradexquant.com";
+      const url = "https://tradexquant.bsn.finance";
       window.location.href = `${url}/`;
     },
   },

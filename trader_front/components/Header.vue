@@ -532,7 +532,7 @@ export default {
     },
     triggerlogout() {
       const { logout } = this;
-      logout().then(() => window.location.href = 'https://tradexquant.com/');
+      logout().then(() => window.location.href = 'https://tradexquant.bsn.finance/');
     },
     scrollToDiv(mydivid) {
       const target = document.getElementById(`${mydivid}`);
@@ -558,7 +558,7 @@ export default {
       }
     },
     routeToHomeTrade() {
-      const url = "https://app.tradexquant.com";
+      const url = "https://tradexapp.bsn.finance";
       window.location.href = `${url}/`;
     },
   },

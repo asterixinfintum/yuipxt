@@ -9,7 +9,7 @@ DEVELOPMENT = false;
 if (DEVELOPMENT) {
     BASE_URL = 'http://localhost:8083';
 } else {
-    BASE_URL = 'https://apitwo.tradexquant.com'
+    BASE_URL = 'https://apitwo.bsn.finance'
 }
 
 if (process) {
