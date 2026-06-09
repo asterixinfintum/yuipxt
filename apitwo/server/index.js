@@ -7,7 +7,7 @@ import express from "express";
 import http from "http";
 import bodyParser from 'body-parser';
 import path from 'path';
-import cors from 'cors';
+// import cors from 'cors';  // REMOVED - commented out
 import socket from 'socket.io';
 import cron from "node-cron";
 
@@ -18,30 +18,33 @@ import User from './models/user';
 const app = express();
 const server = http.createServer(app);
 
-const allowlist = ['https://bsn.finance', 'https://www.bsn.finance.', 'https://tradexapp.bsn.finance', 'https://tradexquant.bsn.finance'];
+// REMOVED - Entire allowlist and corsOptionsDelegate
+// const allowlist = ['https://bsn.finance', 'https://www.bsn.finance.', 'https://tradexapp.bsn.finance', 'https://tradexquant.bsn.finance'];
+// 
+// const corsOptionsDelegate = (req, callback) => {
+//     let corsOptions;
+// 
+//     let isDomainAllowed = allowlist.indexOf(req.header('Origin')) !== -1;
+// 
+//     if (isDomainAllowed) {
+//         corsOptions = { origin: true }
+//     } else {
+//         corsOptions = { origin: false }
+//     }
+//     callback(null, corsOptions)
+// }
 
-const corsOptionsDelegate = (req, callback) => {
-    let corsOptions;
+// REMOVED - app.use(cors) 
+// app.use(cors(corsOptionsDelegate));
 
-    let isDomainAllowed = allowlist.indexOf(req.header('Origin')) !== -1;
-
-    if (isDomainAllowed) {
-        corsOptions = { origin: true }
-    } else {
-        corsOptions = { origin: false }
-    }
-    callback(null, corsOptions)
-}
-
-//app.use(cors(corsOptionsDelegate));
-
+// REMOVED - cors from Socket.IO entirely
 const io = socket(server, {
-    /*cors: {
-        origin: [`https://tradexapp.bsn.finance`, `https://tradexapp.bsn.finance`],
-        methods: ["GET", "POST"],
-        allowedHeaders: ["Authorization"],
-        credentials: true
-    }*/
+    // cors: {  // COMPLETELY REMOVED
+    //     origin: [`https://tradexapp.bsn.finance`, `https://tradexapp.bsn.finance`],
+    //     methods: ["GET", "POST"],
+    //     allowedHeaders: ["Authorization"],
+    //     credentials: true
+    // }
 });
 
 let ioInstance;
@@ -169,7 +172,8 @@ app.use(express.urlencoded({
     extended: false
 }));
 
-app.use(cors());
+// REMOVED - app.use(cors()) line
+// app.use(cors());
 
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));

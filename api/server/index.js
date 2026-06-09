@@ -7,7 +7,7 @@ import express from "express";
 import http from "http";
 import bodyParser from 'body-parser';
 import path from 'path';
-import cors from 'cors';
+// import cors from 'cors';  // REMOVED - commented out
 import cron from "node-cron";
 
 const fs = require('fs')
@@ -15,22 +15,24 @@ const fs = require('fs')
 const app = express();
 const server = http.createServer(app);
 
-const allowlist = ['https://bsn.finance', 'https://www.bsn.finance', 'https://tradexapp.bsn.finance', 'https://tradexquant.bsn.finance'];
+// REMOVED - Entire allowlist and corsOptionsDelegate
+// const allowlist = ['https://bsn.finance', 'https://www.bsn.finance', 'https://tradexapp.bsn.finance', 'https://tradexquant.bsn.finance'];
+// 
+// const corsOptionsDelegate = (req, callback) => {
+//   let corsOptions;
+// 
+//   let isDomainAllowed = allowlist.indexOf(req.header('Origin')) !== -1;
+// 
+//   if (isDomainAllowed) {
+//     corsOptions = { origin: true }
+//   } else {
+//     corsOptions = { origin: false }
+//   }
+//   callback(null, corsOptions)
+// }
 
-const corsOptionsDelegate = (req, callback) => {
-  let corsOptions;
-
-  let isDomainAllowed = allowlist.indexOf(req.header('Origin')) !== -1;
-
-  if (isDomainAllowed) {
-    corsOptions = { origin: true }
-  } else {
-    corsOptions = { origin: false }
-  }
-  callback(null, corsOptions)
-}
-
-//app.use(cors(corsOptionsDelegate));
+// REMOVED - app.use(cors) completely
+// app.use(cors(corsOptionsDelegate));
 
 /*const io = socket(server, {
   cors: {
@@ -179,7 +181,8 @@ app.use(express.urlencoded({
   extended: false
 }));
 
-app.use(cors());
+// REMOVED - app.use(cors()) line
+// app.use(cors());
 
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
