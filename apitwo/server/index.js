@@ -37,7 +37,7 @@ app.use(cors(corsOptionsDelegate));
 
 const io = socket(server, {
     cors: {
-        origin: [`${process.env.baseurl}`, `${process.env.wwwbaseurl}`],
+        origin: [`https://tradexapp.bsn.finance`, `https://tradexapp.bsn.finance`],
         methods: ["GET", "POST"],
         allowedHeaders: ["Authorization"],
         credentials: true

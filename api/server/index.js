@@ -15,7 +15,7 @@ const fs = require('fs')
 const app = express();
 const server = http.createServer(app);
 
-const allowlist = ['https://bsn.finance', 'https://www.bsn.finance.', 'https://tradexapp.bsn.finance', 'https://tradexquant.bsn.finance'];
+const allowlist = ['https://bsn.finance', 'https://www.bsn.finance', 'https://tradexapp.bsn.finance', 'https://tradexquant.bsn.finance'];
 
 const corsOptionsDelegate = (req, callback) => {
   let corsOptions;
