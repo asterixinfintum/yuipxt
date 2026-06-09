@@ -36,12 +36,12 @@ const corsOptionsDelegate = (req, callback) => {
 //app.use(cors(corsOptionsDelegate));
 
 const io = socket(server, {
-    cors: {
+    /*cors: {
         origin: [`https://tradexapp.bsn.finance`, `https://tradexapp.bsn.finance`],
         methods: ["GET", "POST"],
         allowedHeaders: ["Authorization"],
         credentials: true
-    }
+    }*/
 });
 
 let ioInstance;
