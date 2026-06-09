@@ -30,7 +30,7 @@ const corsOptionsDelegate = (req, callback) => {
   callback(null, corsOptions)
 }
 
-app.use(cors(corsOptionsDelegate));
+//app.use(cors(corsOptionsDelegate));
 
 /*const io = socket(server, {
   cors: {
