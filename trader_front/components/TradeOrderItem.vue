@@ -7,7 +7,7 @@
           v-if="!order.orderdetails.automatic && order.ordertype !== 'Market'"
           :class="{ optionsopen }"
         >
-          <span>12/01/2023</span>
+          <span>{{ formatDate(order.createdAt) }}</span>
           <span class="pair">{{ order.tradepair }}</span>
           <span class="ordertype">{{ order.ordertype }}</span>
           <span
@@ -37,7 +37,7 @@
         </div>
 
         <div class="tradeorderitem automatic-eight" v-if="order.orderdetails.automatic">
-          <span>12/01/2023</span>
+          <span>{{ formatDate(order.createdAt) }}</span>
           <span class="pair">{{ order.tradepair }}</span>
           <span>{{ order.orderdetails.total }}</span>
           <span>${{ order.orderdetails.totalinvestment }}</span>
@@ -73,7 +73,7 @@
         </div>
 
         <div class="tradeorderitem automatic" v-if="order.ordertype === 'Market'">
-          <span>12/01/2023</span>
+          <span>{{ formatDate(order.createdAt) }}</span>
           <span class="pair">{{ order.tradepair }}</span>
           <span class="ordertype">{{ order.ordertype }}</span>
           <span
@@ -178,6 +178,13 @@ export default {
     },
   },
   methods: {
+    formatDate(timestamp) {
+      const date = new Date(timestamp);
+      const month = String(date.getMonth() + 1).padStart(2, "0");
+      const day = String(date.getDate()).padStart(2, "0");
+      const year = date.getFullYear();
+      return `${month}/${day}/${year}`;
+    },
     async getautotrades() {
       try {
         const token = localStorage.getItem("873__jh6bdjktoken");
