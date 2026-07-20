@@ -15,13 +15,13 @@ tradercontroller.get('/trader/pairs', async (req, res) => {
     try {
         const { assetmenu } = req.query;
 
-        console.log(assetmenu, 'assetmenu');
+        // console.log(assetmenu, 'assetmenu');
 
         if (assetmenu) {
             const pairs = await allowedpairs();
             const filteredpairs = pairs.filter(pair => pair.type === assetmenu);
 
-            console.log(filteredpairs);
+            //  console.log(filteredpairs);
 
             res.status(200).send({ pairs: filteredpairs });
             return;
@@ -53,7 +53,70 @@ tradercontroller.get('/trader/getassetbyinitials', async (req, res) => {
     try {
         const { assetinitials } = req.query;
 
-        const asset = await Asset.findOne({ symbol: assetinitials });
+        console.log(assetinitials, 'check here');
+
+        // Create variations of the search term
+        const variations = [
+            assetinitials, // Original
+            assetinitials.replace(/ /g, '_'), // Spaces to underscores
+            assetinitials.replace(/_/g, ' '), // Underscores to spaces
+            assetinitials.toUpperCase(), // Uppercase
+            assetinitials.toLowerCase(), // Lowercase
+        ];
+
+        // Remove duplicates
+        const uniqueVariations = [...new Set(variations)];
+
+        console.log('Trying variations:', uniqueVariations);
+
+        let asset = null;
+
+        // Try each variation
+        for (const variation of uniqueVariations) {
+            asset = await Asset.findOne({
+                symbol: variation
+            }).collation({ locale: 'en', strength: 2 });
+
+            if (asset) break;
+        }
+
+        // If still not found, try regex that ignores underscores/spaces completely
+        if (!asset) {
+            // Create a pattern that matches regardless of underscores or spaces
+            const normalizedPattern = assetinitials.replace(/[_\s]/g, '');
+            asset = await Asset.findOne({
+                symbol: {
+                    $regex: new RegExp(`^${normalizedPattern.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}$`, 'i'),
+                    $options: 'i'
+                }
+            });
+
+            // If that finds multiple, we might need to check more carefully
+            if (asset) {
+                // Verify it's a close match
+                const dbSymbol = asset.symbol.replace(/[_\s]/g, '');
+                if (dbSymbol.toLowerCase() !== normalizedPattern.toLowerCase()) {
+                    // If not exact after normalization, we might have a false positive
+                    // Try to find a better match
+                    const allMatches = await Asset.find({
+                        symbol: {
+                            $regex: new RegExp(`${normalizedPattern}`, 'i')
+                        }
+                    });
+
+                    // Find the best match
+                    for (const match of allMatches) {
+                        const normalizedMatch = match.symbol.replace(/[_\s]/g, '');
+                        if (normalizedMatch.toLowerCase() === normalizedPattern.toLowerCase()) {
+                            asset = match;
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+
+        console.log('Found asset:', asset);
 
         if (asset) {
             res.status(200).send({ asset });
@@ -61,6 +124,7 @@ tradercontroller.get('/trader/getassetbyinitials', async (req, res) => {
             res.status(404).send({ asset: null, message: 'asset not found' });
         }
     } catch (error) {
+        console.error('Error in getassetbyinitials:', error);
         res.status(500).send({ error: 'An error occurred' });
     }
 });

@@ -842,6 +842,16 @@ export default {
                     type: 'commodity',
                     pairlabel: "TRADEGATE:OD7P",
                     pair: "Soybean Oil/USD",
+                },
+                {
+                    type: 'commodity',
+                    pairlabel: "SPARKS:LITHIUM",
+                    pair: "Lithium/USD",
+                },
+                {
+                    type: 'commodity',
+                    pairlabel: "CMCMARKETS:PLATINUMV2026",
+                    pair: "Platinum/USD",
                 }
             ]
         }

@@ -12,6 +12,7 @@ var _allowedpairs = _interopRequireDefault(require("../utilities/allowedpairs"))
 var _authenticateToken = _interopRequireDefault(require("../../utils/authenticateToken"));
 var _tradeOrder = _interopRequireDefault(require("../models/tradeOrder"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
@@ -29,41 +30,39 @@ tradercontroller.get('/trader/pairs', /*#__PURE__*/function () {
       while (1) switch (_context.prev = _context.next) {
         case 0:
           _context.prev = 0;
-          assetmenu = req.query.assetmenu;
-          console.log(assetmenu, 'assetmenu');
+          assetmenu = req.query.assetmenu; // console.log(assetmenu, 'assetmenu');
           if (!assetmenu) {
-            _context.next = 11;
+            _context.next = 9;
             break;
           }
-          _context.next = 6;
+          _context.next = 5;
           return (0, _allowedpairs["default"])();
-        case 6:
+        case 5:
           pairs = _context.sent;
           filteredpairs = pairs.filter(function (pair) {
             return pair.type === assetmenu;
-          });
-          console.log(filteredpairs);
+          }); //  console.log(filteredpairs);
           res.status(200).send({
             pairs: filteredpairs
           });
           return _context.abrupt("return");
-        case 11:
+        case 9:
           res.status(200).send({
             pairs: _allowedpairs["default"]
           });
-          _context.next = 17;
+          _context.next = 15;
           break;
-        case 14:
-          _context.prev = 14;
+        case 12:
+          _context.prev = 12;
           _context.t0 = _context["catch"](0);
           res.status(500).send({
             error: 'An error occurred'
           });
-        case 17:
+        case 15:
         case "end":
           return _context.stop();
       }
-    }, _callee, null, [[0, 14]]);
+    }, _callee, null, [[0, 12]]);
   }));
   return function (_x, _x2) {
     return _ref.apply(this, arguments);
@@ -113,18 +112,132 @@ tradercontroller.get('/trader/initialpair', /*#__PURE__*/function () {
 }());
 tradercontroller.get('/trader/getassetbyinitials', /*#__PURE__*/function () {
   var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(req, res) {
-    var assetinitials, asset;
+    var assetinitials, variations, uniqueVariations, asset, _iterator, _step, variation, normalizedPattern, dbSymbol, allMatches, _iterator2, _step2, match, normalizedMatch;
     return _regeneratorRuntime().wrap(function _callee3$(_context3) {
       while (1) switch (_context3.prev = _context3.next) {
         case 0:
           _context3.prev = 0;
           assetinitials = req.query.assetinitials;
-          _context3.next = 4;
+          console.log(assetinitials, 'check here');
+
+          // Create variations of the search term
+          variations = [assetinitials,
+          // Original
+          assetinitials.replace(/ /g, '_'),
+          // Spaces to underscores
+          assetinitials.replace(/_/g, ' '),
+          // Underscores to spaces
+          assetinitials.toUpperCase(),
+          // Uppercase
+          assetinitials.toLowerCase() // Lowercase
+          ]; // Remove duplicates
+          uniqueVariations = _toConsumableArray(new Set(variations));
+          console.log('Trying variations:', uniqueVariations);
+          asset = null; // Try each variation
+          _iterator = _createForOfIteratorHelper(uniqueVariations);
+          _context3.prev = 8;
+          _iterator.s();
+        case 10:
+          if ((_step = _iterator.n()).done) {
+            _context3.next = 19;
+            break;
+          }
+          variation = _step.value;
+          _context3.next = 14;
           return _asset["default"].findOne({
-            symbol: assetinitials
+            symbol: variation
+          }).collation({
+            locale: 'en',
+            strength: 2
           });
-        case 4:
+        case 14:
           asset = _context3.sent;
+          if (!asset) {
+            _context3.next = 17;
+            break;
+          }
+          return _context3.abrupt("break", 19);
+        case 17:
+          _context3.next = 10;
+          break;
+        case 19:
+          _context3.next = 24;
+          break;
+        case 21:
+          _context3.prev = 21;
+          _context3.t0 = _context3["catch"](8);
+          _iterator.e(_context3.t0);
+        case 24:
+          _context3.prev = 24;
+          _iterator.f();
+          return _context3.finish(24);
+        case 27:
+          if (asset) {
+            _context3.next = 57;
+            break;
+          }
+          // Create a pattern that matches regardless of underscores or spaces
+          normalizedPattern = assetinitials.replace(/[_\s]/g, '');
+          _context3.next = 31;
+          return _asset["default"].findOne({
+            symbol: {
+              $regex: new RegExp("^".concat(normalizedPattern.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), "$"), 'i'),
+              $options: 'i'
+            }
+          });
+        case 31:
+          asset = _context3.sent;
+          if (!asset) {
+            _context3.next = 57;
+            break;
+          }
+          // Verify it's a close match
+          dbSymbol = asset.symbol.replace(/[_\s]/g, '');
+          if (!(dbSymbol.toLowerCase() !== normalizedPattern.toLowerCase())) {
+            _context3.next = 57;
+            break;
+          }
+          _context3.next = 37;
+          return _asset["default"].find({
+            symbol: {
+              $regex: new RegExp("".concat(normalizedPattern), 'i')
+            }
+          });
+        case 37:
+          allMatches = _context3.sent;
+          // Find the best match
+          _iterator2 = _createForOfIteratorHelper(allMatches);
+          _context3.prev = 39;
+          _iterator2.s();
+        case 41:
+          if ((_step2 = _iterator2.n()).done) {
+            _context3.next = 49;
+            break;
+          }
+          match = _step2.value;
+          normalizedMatch = match.symbol.replace(/[_\s]/g, '');
+          if (!(normalizedMatch.toLowerCase() === normalizedPattern.toLowerCase())) {
+            _context3.next = 47;
+            break;
+          }
+          asset = match;
+          return _context3.abrupt("break", 49);
+        case 47:
+          _context3.next = 41;
+          break;
+        case 49:
+          _context3.next = 54;
+          break;
+        case 51:
+          _context3.prev = 51;
+          _context3.t1 = _context3["catch"](39);
+          _iterator2.e(_context3.t1);
+        case 54:
+          _context3.prev = 54;
+          _iterator2.f();
+          return _context3.finish(54);
+        case 57:
+          console.log('Found asset:', asset);
           if (asset) {
             res.status(200).send({
               asset: asset
@@ -135,19 +248,20 @@ tradercontroller.get('/trader/getassetbyinitials', /*#__PURE__*/function () {
               message: 'asset not found'
             });
           }
-          _context3.next = 11;
+          _context3.next = 65;
           break;
-        case 8:
-          _context3.prev = 8;
-          _context3.t0 = _context3["catch"](0);
+        case 61:
+          _context3.prev = 61;
+          _context3.t2 = _context3["catch"](0);
+          console.error('Error in getassetbyinitials:', _context3.t2);
           res.status(500).send({
             error: 'An error occurred'
           });
-        case 11:
+        case 65:
         case "end":
           return _context3.stop();
       }
-    }, _callee3, null, [[0, 8]]);
+    }, _callee3, null, [[0, 61], [8, 21, 24, 27], [39, 51, 54, 57]]);
   }));
   return function (_x5, _x6) {
     return _ref3.apply(this, arguments);

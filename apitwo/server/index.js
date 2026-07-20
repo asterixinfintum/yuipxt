@@ -38,14 +38,14 @@ const server = http.createServer(app);
 // app.use(cors(corsOptionsDelegate));
 
 // REMOVED - cors from Socket.IO entirely
-const io = socket(server, {
-    // cors: {  // COMPLETELY REMOVED
-    //     origin: [`https://tradexapp.bsn.finance`, `https://tradexapp.bsn.finance`],
-    //     methods: ["GET", "POST"],
-    //     allowedHeaders: ["Authorization"],
-    //     credentials: true
-    // }
-});
+/*const io = socket(server, {
+    cors: {  // COMPLETELY REMOVED
+         origin: [`https://tradexapp.bsn.finance`, `https://tradexapp.bsn.finance`, `http://localhost:3000`],
+         methods: ["GET", "POST"],
+         allowedHeaders: ["Authorization"],
+         credentials: true
+     }
+});*/
 
 let ioInstance;
 

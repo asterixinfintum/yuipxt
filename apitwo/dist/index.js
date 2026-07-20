@@ -6,7 +6,6 @@ var _express = _interopRequireDefault(require("express"));
 var _http = _interopRequireDefault(require("http"));
 var _bodyParser = _interopRequireDefault(require("body-parser"));
 var _path = _interopRequireDefault(require("path"));
-var _cors = _interopRequireDefault(require("cors"));
 var _socket = _interopRequireDefault(require("socket.io"));
 var _nodeCron = _interopRequireDefault(require("node-cron"));
 var _user = _interopRequireDefault(require("./models/user"));
@@ -18,34 +17,43 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 if (process.env.NODE_ENV !== 'production') {
   require("dotenv").config();
 }
+
+// import cors from 'cors';  // REMOVED - commented out
+
 var _require = require('date-fns'),
   formatDistanceToNow = _require.formatDistanceToNow;
 var app = (0, _express["default"])();
 var server = _http["default"].createServer(app);
-var allowlist = ['https://tradexquant.com', 'https://www.tradexquant.com', 'https://app.tradexquant.com', 'http://localhost:3000'];
-var corsOptionsDelegate = function corsOptionsDelegate(req, callback) {
-  var corsOptions;
-  var isDomainAllowed = allowlist.indexOf(req.header('Origin')) !== -1;
-  if (isDomainAllowed) {
-    corsOptions = {
-      origin: true
-    };
-  } else {
-    corsOptions = {
-      origin: false
-    };
-  }
-  callback(null, corsOptions);
-};
-app.use((0, _cors["default"])(corsOptionsDelegate));
-var io = (0, _socket["default"])(server, {
-  cors: {
-    origin: ["".concat(process.env.baseurl), "".concat(process.env.wwwbaseurl)],
-    methods: ["GET", "POST"],
-    allowedHeaders: ["Authorization"],
-    credentials: true
-  }
-});
+
+// REMOVED - Entire allowlist and corsOptionsDelegate
+// const allowlist = ['https://bsn.finance', 'https://www.bsn.finance.', 'https://tradexapp.bsn.finance', 'https://tradexquant.bsn.finance'];
+// 
+// const corsOptionsDelegate = (req, callback) => {
+//     let corsOptions;
+// 
+//     let isDomainAllowed = allowlist.indexOf(req.header('Origin')) !== -1;
+// 
+//     if (isDomainAllowed) {
+//         corsOptions = { origin: true }
+//     } else {
+//         corsOptions = { origin: false }
+//     }
+//     callback(null, corsOptions)
+// }
+
+// REMOVED - app.use(cors) 
+// app.use(cors(corsOptionsDelegate));
+
+// REMOVED - cors from Socket.IO entirely
+/*const io = socket(server, {
+    cors: {  // COMPLETELY REMOVED
+         origin: [`https://tradexapp.bsn.finance`, `https://tradexapp.bsn.finance`, `http://localhost:3000`],
+         methods: ["GET", "POST"],
+         allowedHeaders: ["Authorization"],
+         credentials: true
+     }
+});*/
+
 var ioInstance;
 function initSocketIO() {
   io.on('connection', function (socket) {
@@ -245,7 +253,10 @@ function initSocketIO() {
 app.use(_express["default"].urlencoded({
   extended: false
 }));
-app.use((0, _cors["default"])());
+
+// REMOVED - app.use(cors()) line
+// app.use(cors());
+
 app.use(_express["default"].json());
 app.use(_bodyParser["default"].urlencoded({
   extended: true

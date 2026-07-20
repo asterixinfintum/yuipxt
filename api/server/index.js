@@ -7,7 +7,7 @@ import express from "express";
 import http from "http";
 import bodyParser from 'body-parser';
 import path from 'path';
-// import cors from 'cors';  // REMOVED - commented out
+import cors from 'cors';  // REMOVED - commented out
 import cron from "node-cron";
 
 const fs = require('fs')
@@ -16,23 +16,23 @@ const app = express();
 const server = http.createServer(app);
 
 // REMOVED - Entire allowlist and corsOptionsDelegate
-// const allowlist = ['https://bsn.finance', 'https://www.bsn.finance', 'https://tradexapp.bsn.finance', 'https://tradexquant.bsn.finance'];
+const allowlist = ['http://localhost:3000', 'https://www.bsn.finance', 'https://tradexapp.bsn.finance', 'https://tradexquant.bsn.finance'];
 // 
-// const corsOptionsDelegate = (req, callback) => {
-//   let corsOptions;
+const corsOptionsDelegate = (req, callback) => {
+   let corsOptions;
+ 
+   let isDomainAllowed = allowlist.indexOf(req.header('Origin')) !== -1;
 // 
-//   let isDomainAllowed = allowlist.indexOf(req.header('Origin')) !== -1;
-// 
-//   if (isDomainAllowed) {
-//     corsOptions = { origin: true }
-//   } else {
-//     corsOptions = { origin: false }
-//   }
-//   callback(null, corsOptions)
-// }
+   if (isDomainAllowed) {
+     corsOptions = { origin: true }
+   } else {
+     corsOptions = { origin: false }
+   }
+   callback(null, corsOptions)
+ }
 
 // REMOVED - app.use(cors) completely
-// app.use(cors(corsOptionsDelegate));
+ app.use(cors(corsOptionsDelegate));
 
 /*const io = socket(server, {
   cors: {
@@ -74,6 +74,7 @@ import dailyreport from './userdashboard/dailyreport';
 import transactionsRoute from './wallet/routes/transactions.js';
 
 import seedAssets from './functions/seedAssets';
+import seedCommodities from './functions/seedCommodities';
 import getBitcoinBalances from './wallet/functions/getBitcoinBalances';
 
 import getprices from './trade/getprices.js';
@@ -264,6 +265,8 @@ mongoose.connect(`${process.env.DB}`, {
   }
 
   seedAssets({ assetType: 'fiat' });
+
+  seedCommodities();
 
   //generateFiatTradingPairs()
   generatetradingpairs()

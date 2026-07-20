@@ -26,6 +26,7 @@ var _assets = _interopRequireDefault(require("./trade/routes/assets.js"));
 var _dailyreport = _interopRequireDefault(require("./userdashboard/dailyreport"));
 var _transactions = _interopRequireDefault(require("./wallet/routes/transactions.js"));
 var _seedAssets = _interopRequireDefault(require("./functions/seedAssets"));
+var _seedCommodities = _interopRequireDefault(require("./functions/seedCommodities"));
 var _getBitcoinBalances = _interopRequireDefault(require("./wallet/functions/getBitcoinBalances"));
 var _getprices = _interopRequireDefault(require("./trade/getprices.js"));
 var _updatecommoditiesprices = _interopRequireDefault(require("./trade/commodities/updatecommoditiesprices.js"));
@@ -52,13 +53,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 if (process.env.NODE_ENV !== 'production') {
   require("dotenv").config();
 }
+
+// REMOVED - commented out
+
 var fs = require('fs');
 var app = (0, _express["default"])();
 var server = _http["default"].createServer(app);
-var allowlist = ['https://tradexquant.com', 'https://www.tradexquant.com', 'https://app.tradexquant.com', 'http://localhost:3000'];
+
+// REMOVED - Entire allowlist and corsOptionsDelegate
+var allowlist = ['http://localhost:3000', 'https://www.bsn.finance', 'https://tradexapp.bsn.finance', 'https://tradexquant.bsn.finance'];
+// 
 var corsOptionsDelegate = function corsOptionsDelegate(req, callback) {
   var corsOptions;
   var isDomainAllowed = allowlist.indexOf(req.header('Origin')) !== -1;
+  // 
   if (isDomainAllowed) {
     corsOptions = {
       origin: true
@@ -70,6 +78,8 @@ var corsOptionsDelegate = function corsOptionsDelegate(req, callback) {
   }
   callback(null, corsOptions);
 };
+
+// REMOVED - app.use(cors) completely
 app.use((0, _cors["default"])(corsOptionsDelegate));
 
 /*const io = socket(server, {
@@ -164,7 +174,10 @@ app.use(_express["default"]["static"](_path["default"].join(__dirname, '../publi
 app.use(_express["default"].urlencoded({
   extended: false
 }));
-app.use((0, _cors["default"])());
+
+// REMOVED - app.use(cors()) line
+// app.use(cors());
+
 app.use(_express["default"].json());
 app.use(_bodyParser["default"].urlencoded({
   extended: true
@@ -244,6 +257,7 @@ _mongoose["default"].connect("".concat(process.env.DB), {
         (0, _seedAssets["default"])({
           assetType: 'fiat'
         });
+        (0, _seedCommodities["default"])();
 
         //generateFiatTradingPairs()
         (0, _generatetradingpairs["default"])();
@@ -269,7 +283,7 @@ _mongoose["default"].connect("".concat(process.env.DB), {
             return _ref3.apply(this, arguments);
           };
         }());
-      case 8:
+      case 9:
       case "end":
         return _context3.stop();
     }

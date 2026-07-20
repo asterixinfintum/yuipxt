@@ -44,5 +44,123 @@ var commoditySymbols = [{
   name: "Coffee",
   symbol: "COFFEE",
   image: '17nasdaq-logo-200.png'
+}, {
+  name: "Lithium",
+  symbol: "LITHIUM",
+  image: '17nasdaq-logo-200.png'
+}, {
+  name: "Platinum",
+  symbol: "PLATINUM",
+  image: '17nasdaq-logo-200.png'
+},
+// Newly added commodities
+{
+  name: "Gold",
+  symbol: "GOLD",
+  image: '17nasdaq-logo-200.png'
+}, {
+  name: "Nickel",
+  symbol: "NICKEL",
+  image: '17nasdaq-logo-200.png'
+}, {
+  name: "Ethanol",
+  symbol: "ETHANOL",
+  image: '17nasdaq-logo-200.png'
+}, {
+  name: "Palladium",
+  symbol: "PALLADIUM",
+  image: '17nasdaq-logo-200.png'
+}, {
+  name: "Silver",
+  symbol: "SILVER",
+  image: '17nasdaq-logo-200.png'
+}, {
+  name: "Heating Oil",
+  symbol: "HEATING_OIL",
+  image: '17nasdaq-logo-200.png'
+}, {
+  name: "Coal",
+  symbol: "COAL",
+  image: '17nasdaq-logo-200.png'
+}, {
+  name: "RBOB Gasoline",
+  symbol: "RBOB_GASOLINE",
+  image: '17nasdaq-logo-200.png'
+}, {
+  name: "Uranium",
+  symbol: "URANIUM",
+  image: '17nasdaq-logo-200.png'
+}, {
+  name: "Lead",
+  symbol: "LEAD",
+  image: '17nasdaq-logo-200.png'
+}, {
+  name: "Iron Ore",
+  symbol: "IRON_ORE",
+  image: '17nasdaq-logo-200.png'
+}, {
+  name: "Lean Hog",
+  symbol: "LEAN_HOG",
+  image: '17nasdaq-logo-200.png'
+}, {
+  name: "Oats",
+  symbol: "OATS",
+  image: '17nasdaq-logo-200.png'
+}, {
+  name: "Lumber",
+  symbol: "LUMBER",
+  image: '17nasdaq-logo-200.png'
+}, {
+  name: "Cocoa",
+  symbol: "COCOA",
+  image: '17nasdaq-logo-200.png'
+}, {
+  name: "Live Cattle",
+  symbol: "LIVE_CATTLE",
+  image: '17nasdaq-logo-200.png'
+}, {
+  name: "Feeder Cattle",
+  symbol: "FEEDER_CATTLE",
+  image: '17nasdaq-logo-200.png'
+}, {
+  name: "Milk",
+  symbol: "MILK",
+  image: '17nasdaq-logo-200.png'
+}, {
+  name: "Orange Juice",
+  symbol: "ORANGE_JUICE",
+  image: '17nasdaq-logo-200.png'
+}, {
+  name: "Palm Oil",
+  symbol: "PALM_OIL",
+  image: '17nasdaq-logo-200.png'
+}, {
+  name: "Rapeseed",
+  symbol: "RAPESEED",
+  image: '17nasdaq-logo-200.png'
+}, {
+  name: "Rice",
+  symbol: "RICE",
+  image: '17nasdaq-logo-200.png'
+}, {
+  name: "Zinc",
+  symbol: "ZINC",
+  image: '17nasdaq-logo-200.png'
+}, {
+  name: "Soybean Meal",
+  symbol: "SOYBEAN_MEAL",
+  image: '17nasdaq-logo-200.png'
+}, {
+  name: "Soybeans",
+  symbol: "SOYBEANS",
+  image: '17nasdaq-logo-200.png'
+}, {
+  name: "Soybean Oil",
+  symbol: "SOYBEAN_OIL",
+  image: '17nasdaq-logo-200.png'
+}, {
+  name: "Tin",
+  symbol: "TIN",
+  image: '17nasdaq-logo-200.png'
 }];
 var _default = exports["default"] = commoditySymbols;
