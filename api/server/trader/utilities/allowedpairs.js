@@ -977,51 +977,50 @@ async function getSanitizedPairs(allowedpairs) {
     }
 
     const allowedPairsFromDB = await AllowedPair.find();
+    const dbDataProcessed = processDBData(allowedPairsFromDB);
+    const allAllowedPairs = [...allowedpairs, ...dbDataProcessed];
 
-    const dbDataProcessed = processDBData(allowedPairsFromDB)
+    const sanitizedResults = [];
 
-    const allAllowedPairs = [...allowedpairs, ...dbDataProcessed]
-
-    const sanitizedPromises = allAllowedPairs.map(async pair => {
+    for (const pair of allAllowedPairs) {
         const [left, right] = pair.pair.split('/');
 
-        const base = await Asset.findOne({ symbol: left });
-        const quote = await Asset.findOne({ symbol: right });
-        let price;
-        let leftid;
-        let rightid;
-        let lefttype;
-        let righttype;
+        // Case-insensitive search using regex
+        const base = await Asset.findOne({
+            symbol: { $regex: new RegExp('^' + left + '$', 'i') }
+        });
 
-        if (base && quote) {
-            price = (base.price / quote.price).toFixed(3);
-            leftid = base._id;
-            rightid = quote._id;
-            lefttype = base.assetType;
-            righttype = quote.assetType;
-        } else {
-            price = 0;
-            leftid = null;
-            rightid = null;
-            lefttype = null;
-            righttype = null;
+        const quote = await Asset.findOne({
+            symbol: { $regex: new RegExp('^' + right + '$', 'i') }
+        });
+
+        // Skip if either asset doesn't exist
+        if (!base || !quote) {
+            continue;
         }
 
-        return {
+        // Remove commas and convert to number
+        const basePrice = parseFloat(base.price.replace(/,/g, ''));
+        const quotePrice = parseFloat(quote.price.replace(/,/g, ''));
+
+        const price = (basePrice / quotePrice).toFixed(3);
+
+        //console.log(price, basePrice, quotePrice);
+
+        sanitizedResults.push({
             ...pair,
             left,
             right,
-            leftid,
-            rightid,
-            lefttype,
-            righttype,
+            leftid: base._id,
+            rightid: quote._id,
+            lefttype: base.assetType,
+            righttype: quote.assetType,
             price,
             change: generateRandomPercentageWithDirectionAndColor()
-        };
-    });
+        });
+    }
 
-    const sanitized = await Promise.all(sanitizedPromises);
-    return sanitized;
+    return sanitizedResults;
 }
 
 async function processPairs() {

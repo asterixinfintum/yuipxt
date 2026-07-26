@@ -21,7 +21,7 @@ tradercontroller.get('/trader/pairs', async (req, res) => {
             const pairs = await allowedpairs();
             const filteredpairs = pairs.filter(pair => pair.type === assetmenu);
 
-            //  console.log(filteredpairs);
+            //console.log(filteredpairs);
 
             res.status(200).send({ pairs: filteredpairs });
             return;
@@ -37,9 +37,22 @@ tradercontroller.get('/trader/initialpair', async (req, res) => {
     try {
         const { baseassetinitials } = req.query;
 
+        console.log('=========================')
+        console.log(baseassetinitials)
+
         if (baseassetinitials) {
             const pairs = await allowedpairs();
-            const initialpair = pairs.filter(pair => pair.left === baseassetinitials)[0];
+
+            // Case-insensitive search using includes
+            const initialpair = pairs.find(pair =>
+                pair.left && pair.left.toLowerCase().includes(baseassetinitials.toLowerCase())
+            );
+
+            /* console.log('=======================');
+             console.log('Searching for:', baseassetinitials);
+             console.log('All pairs:', pairs);
+             console.log('Found pair:', initialpair);
+             console.log('========================');*/
 
             res.status(200).send({ initialpair });
         }
@@ -133,13 +146,65 @@ tradercontroller.get('/trader/getpairprice', async (req, res) => {
     try {
         const { baseassetid, quoteassetid } = req.query;
 
+        console.log(baseassetid, quoteassetid, '-------');
+
         const base = await Asset.findOne({ _id: baseassetid });
         const quote = await Asset.findOne({ _id: quoteassetid });
 
-        const pairprice = base.price / quote.price;
+        console.log(base, quote, 'base / quote');
 
-        res.status(200).send({ pairprice, baseassetpriceUSD: base.price })
+        // Helper function to parse price strings with multiple formats
+        function parsePrice(priceStr) {
+            if (!priceStr) return 0;
+
+            let cleaned = String(priceStr);
+
+            // Remove currency symbols
+            cleaned = cleaned.replace(/[$€£¥]/g, '');
+
+            // Remove commas (thousand separators)
+            cleaned = cleaned.replace(/,/g, '');
+
+            // Handle percentage signs if present
+            cleaned = cleaned.replace(/%/g, '');
+
+            // Trim whitespace
+            cleaned = cleaned.trim();
+
+            // Parse to float
+            const parsed = parseFloat(cleaned);
+
+            return isNaN(parsed) ? 0 : parsed;
+        }
+
+        // Parse prices
+        const basePrice = parsePrice(base.price);
+        const quotePrice = parsePrice(quote.price);
+
+        // Check for valid prices
+        if (basePrice === 0 || quotePrice === 0) {
+            console.log(`Invalid price - base: "${base.price}", quote: "${quote.price}"`);
+            return res.status(400).send({
+                error: 'Invalid price data',
+                basePriceRaw: base.price,
+                quotePriceRaw: quote.price,
+                basePriceParsed: basePrice,
+                quotePriceParsed: quotePrice
+            });
+        }
+
+        const pairprice = basePrice / quotePrice;
+
+        console.log(`${basePrice} / ${quotePrice} = ${pairprice}`);
+
+        res.status(200).send({
+            pairprice: parseFloat(pairprice.toFixed(6)), // Return as number with 6 decimals
+            baseassetpriceUSD: basePrice,
+            quoteassetpriceUSD: quotePrice
+        });
+
     } catch (error) {
+        console.error('Error:', error);
         res.status(500).send({ error: 'An error occurred' });
     }
 });
@@ -251,6 +316,8 @@ tradercontroller.get('/trader/headerdetails', async (req, res) => {
 });
 
 tradercontroller.post('/trader/createorder', authenticateToken, async (req, res) => {
+    console.log('hello world');
+
     if (req.user && req.user._id) {
         try {
             const { tradetype, ordertype } = req.query;
@@ -259,7 +326,13 @@ tradercontroller.post('/trader/createorder', authenticateToken, async (req, res)
 
                 const _id = req.body.orderdetails.assetbalancededucted;
 
+                console.log(req.body, 'body content')
+
                 const asset = await Asset.findOne({ _id });
+
+                console.log(asset, 'asset here')
+
+
                 const wallet = await Wallet.findOne({ _id: req.body.wallet });
 
                 const tradeorder = new TradeOrder(req.body);

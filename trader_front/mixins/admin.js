@@ -3,7 +3,7 @@ import socket from '@/plugins/socket.js';
 export default {
     data() {
         return {
-            DEVELOPMENT: false,
+            DEVELOPMENT: true,
             agent: null,
             socket
         }

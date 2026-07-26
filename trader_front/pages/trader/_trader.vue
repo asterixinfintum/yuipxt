@@ -1555,6 +1555,10 @@ export default {
 
       this.buyprice = this.currentpair ? this.currentpair.price : "";
       this.sellprice = this.currentpair ? this.currentpair.price : "";
+
+      console.log("======================================");
+      console.log(this.currentpair, "this.currentpair");
+      console.log("======================================");
     },
     quoteassetinitials() {
       this.getquoteasset();
@@ -1662,6 +1666,11 @@ export default {
           tradeorder.ordertype = "automatic";
           tradeorder.orderdetails = orderdetails;
         }
+
+        console.log("====================================");
+        console.log(tradeorder);
+        console.log(this.currentpair);
+        console.log("====================================");
 
         if (token) {
           this.submittingtrade = true;
@@ -1818,8 +1827,12 @@ export default {
 
         const result = await response.json();
 
+        //console.log(result)
+
         this.pairprice = result.pairprice;
         this.baseassetpriceUSD = result.baseassetpriceUSD;
+
+        console.log(this.pairprice, result, "========");
 
         this.getpairorders(this.pairprice);
         this.getmarkettrades(this.pairprice);
@@ -1912,6 +1925,8 @@ export default {
       }
     },
     getinitialpair() {
+      console.log("getting initial pair");
+
       try {
         const token = localStorage.getItem("873__jh6bdjktoken");
         const { baseassetinitials } = this;
@@ -1937,7 +1952,7 @@ export default {
       }
     },
     getpairs() {
-      console.log(this.baseassetsmenu)
+      console.log(this.baseassetsmenu);
       try {
         fetch(`${BASE_URL}/trader/pairs?assetmenu=${this.baseassetsmenu}`, {
           method: "GET",

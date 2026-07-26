@@ -41,7 +41,7 @@ tradercontroller.get('/trader/pairs', /*#__PURE__*/function () {
           pairs = _context.sent;
           filteredpairs = pairs.filter(function (pair) {
             return pair.type === assetmenu;
-          }); //  console.log(filteredpairs);
+          }); //console.log(filteredpairs);
           res.status(200).send({
             pairs: filteredpairs
           });
@@ -76,35 +76,43 @@ tradercontroller.get('/trader/initialpair', /*#__PURE__*/function () {
         case 0:
           _context2.prev = 0;
           baseassetinitials = req.query.baseassetinitials;
+          console.log('=========================');
+          console.log(baseassetinitials);
           if (!baseassetinitials) {
-            _context2.next = 8;
+            _context2.next = 10;
             break;
           }
-          _context2.next = 5;
+          _context2.next = 7;
           return (0, _allowedpairs["default"])();
-        case 5:
+        case 7:
           pairs = _context2.sent;
-          initialpair = pairs.filter(function (pair) {
-            return pair.left === baseassetinitials;
-          })[0];
+          // Case-insensitive search using includes
+          initialpair = pairs.find(function (pair) {
+            return pair.left && pair.left.toLowerCase().includes(baseassetinitials.toLowerCase());
+          });
+          /* console.log('=======================');
+           console.log('Searching for:', baseassetinitials);
+           console.log('All pairs:', pairs);
+           console.log('Found pair:', initialpair);
+           console.log('========================');*/
           res.status(200).send({
             initialpair: initialpair
           });
-        case 8:
-          _context2.next = 14;
-          break;
         case 10:
-          _context2.prev = 10;
+          _context2.next = 16;
+          break;
+        case 12:
+          _context2.prev = 12;
           _context2.t0 = _context2["catch"](0);
           console.log(_context2.t0);
           res.status(500).send({
             error: 'An error occurred'
           });
-        case 14:
+        case 16:
         case "end":
           return _context2.stop();
       }
-    }, _callee2, null, [[0, 10]]);
+    }, _callee2, null, [[0, 12]]);
   }));
   return function (_x3, _x4) {
     return _ref2.apply(this, arguments);
@@ -269,42 +277,84 @@ tradercontroller.get('/trader/getassetbyinitials', /*#__PURE__*/function () {
 }());
 tradercontroller.get('/trader/getpairprice', /*#__PURE__*/function () {
   var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4(req, res) {
-    var _req$query, baseassetid, quoteassetid, base, quote, pairprice;
+    var parsePrice, _req$query, baseassetid, quoteassetid, base, quote, basePrice, quotePrice, pairprice;
     return _regeneratorRuntime().wrap(function _callee4$(_context4) {
       while (1) switch (_context4.prev = _context4.next) {
         case 0:
           _context4.prev = 0;
+          // Helper function to parse price strings with multiple formats
+          parsePrice = function parsePrice(priceStr) {
+            if (!priceStr) return 0;
+            var cleaned = String(priceStr);
+
+            // Remove currency symbols
+            cleaned = cleaned.replace(/[$€£¥]/g, '');
+
+            // Remove commas (thousand separators)
+            cleaned = cleaned.replace(/,/g, '');
+
+            // Handle percentage signs if present
+            cleaned = cleaned.replace(/%/g, '');
+
+            // Trim whitespace
+            cleaned = cleaned.trim();
+
+            // Parse to float
+            var parsed = parseFloat(cleaned);
+            return isNaN(parsed) ? 0 : parsed;
+          }; // Parse prices
           _req$query = req.query, baseassetid = _req$query.baseassetid, quoteassetid = _req$query.quoteassetid;
-          _context4.next = 4;
+          console.log(baseassetid, quoteassetid, '-------');
+          _context4.next = 6;
           return _asset["default"].findOne({
             _id: baseassetid
           });
-        case 4:
+        case 6:
           base = _context4.sent;
-          _context4.next = 7;
+          _context4.next = 9;
           return _asset["default"].findOne({
             _id: quoteassetid
           });
-        case 7:
+        case 9:
           quote = _context4.sent;
-          pairprice = base.price / quote.price;
+          console.log(base, quote, 'base / quote');
+          basePrice = parsePrice(base.price);
+          quotePrice = parsePrice(quote.price); // Check for valid prices
+          if (!(basePrice === 0 || quotePrice === 0)) {
+            _context4.next = 16;
+            break;
+          }
+          console.log("Invalid price - base: \"".concat(base.price, "\", quote: \"").concat(quote.price, "\""));
+          return _context4.abrupt("return", res.status(400).send({
+            error: 'Invalid price data',
+            basePriceRaw: base.price,
+            quotePriceRaw: quote.price,
+            basePriceParsed: basePrice,
+            quotePriceParsed: quotePrice
+          }));
+        case 16:
+          pairprice = basePrice / quotePrice;
+          console.log("".concat(basePrice, " / ").concat(quotePrice, " = ").concat(pairprice));
           res.status(200).send({
-            pairprice: pairprice,
-            baseassetpriceUSD: base.price
+            pairprice: parseFloat(pairprice.toFixed(6)),
+            // Return as number with 6 decimals
+            baseassetpriceUSD: basePrice,
+            quoteassetpriceUSD: quotePrice
           });
-          _context4.next = 15;
+          _context4.next = 25;
           break;
-        case 12:
-          _context4.prev = 12;
+        case 21:
+          _context4.prev = 21;
           _context4.t0 = _context4["catch"](0);
+          console.error('Error:', _context4.t0);
           res.status(500).send({
             error: 'An error occurred'
           });
-        case 15:
+        case 25:
         case "end":
           return _context4.stop();
       }
-    }, _callee4, null, [[0, 12]]);
+    }, _callee4, null, [[0, 21]]);
   }));
   return function (_x7, _x8) {
     return _ref4.apply(this, arguments);
@@ -506,36 +556,39 @@ tradercontroller.post('/trader/createorder', _authenticateToken["default"], /*#_
     return _regeneratorRuntime().wrap(function _callee10$(_context10) {
       while (1) switch (_context10.prev = _context10.next) {
         case 0:
+          console.log('hello world');
           if (!(req.user && req.user._id)) {
-            _context10.next = 66;
+            _context10.next = 69;
             break;
           }
-          _context10.prev = 1;
+          _context10.prev = 2;
           _req$query3 = req.query, tradetype = _req$query3.tradetype, ordertype = _req$query3.ordertype;
           if (!(tradetype === 'automatic')) {
-            _context10.next = 25;
+            _context10.next = 28;
             break;
           }
           _id = req.body.orderdetails.assetbalancededucted;
-          _context10.next = 7;
+          console.log(req.body, 'body content');
+          _context10.next = 9;
           return _asset["default"].findOne({
             _id: _id
           });
-        case 7:
+        case 9:
           asset = _context10.sent;
-          _context10.next = 10;
+          console.log(asset, 'asset here');
+          _context10.next = 13;
           return _wallet2["default"].findOne({
             _id: req.body.wallet
           });
-        case 10:
+        case 13:
           wallet = _context10.sent;
           _tradeorder = new _tradeOrder["default"](req.body);
           _tradeorder.orderdetails.totalinvestment = _tradeorder.orderdetails.total * asset.price;
-          _context10.next = 15;
+          _context10.next = 18;
           return _tradeorder.save();
-        case 15:
+        case 18:
           if (!asset) {
-            _context10.next = 22;
+            _context10.next = 25;
             break;
           }
           assetid = getStringFromObjectId(asset._id);
@@ -576,46 +629,46 @@ tradercontroller.post('/trader/createorder', _authenticateToken["default"], /*#_
               return console.error("Failed to find and update wallet: ".concat(err));
             });
           }
-          _context10.next = 24;
+          _context10.next = 27;
           break;
-        case 22:
+        case 25:
           res.status(404).send({
             message: 'not found'
           });
           return _context10.abrupt("return");
-        case 24:
+        case 27:
           return _context10.abrupt("return");
-        case 25:
+        case 28:
           if (!(ordertype === 'Market')) {
-            _context10.next = 56;
+            _context10.next = 59;
             break;
           }
           marketorder = req.body;
           orderdetails = marketorder.orderdetails;
-          _context10.next = 30;
+          _context10.next = 33;
           return _asset["default"].findOne({
             _id: orderdetails.assetfrom
           });
-        case 30:
+        case 33:
           assetfrom = _context10.sent;
-          _context10.next = 33;
+          _context10.next = 36;
           return _asset["default"].findOne({
             _id: orderdetails.assetto
           });
-        case 33:
+        case 36:
           assetto = _context10.sent;
           if (!(assetfrom && assetto)) {
-            _context10.next = 54;
+            _context10.next = 57;
             break;
           }
           amountfrom = parseFloat(orderdetails.amountfrom);
           amountto = parseFloat(orderdetails.amountto);
           walletid = marketorder.wallet;
-          _context10.next = 40;
+          _context10.next = 43;
           return _wallet2["default"].findOne({
             _id: walletid
           });
-        case 40:
+        case 43:
           _wallet = _context10.sent;
           balances = _wallet.balances.filter(function (blc) {
             return blc && blc !== null && blc.asset_id;
@@ -653,9 +706,9 @@ tradercontroller.post('/trader/createorder', _authenticateToken["default"], /*#_
             upsert: true
           };
           _tradeorder2 = new _tradeOrder["default"](req.body);
-          _context10.next = 51;
+          _context10.next = 54;
           return _tradeorder2.save();
-        case 51:
+        case 54:
           _wallet2["default"].findOneAndUpdate({
             _id: req.body.wallet
           }, _update, _options).then(function (updatedWallet) {
@@ -672,37 +725,37 @@ tradercontroller.post('/trader/createorder', _authenticateToken["default"], /*#_
           })["catch"](function (err) {
             return console.error("Failed to find and update wallet: ".concat(err));
           });
-          _context10.next = 55;
+          _context10.next = 58;
           break;
-        case 54:
+        case 57:
           res.status(404).send({
             message: 'assets not found'
           });
-        case 55:
+        case 58:
           return _context10.abrupt("return");
-        case 56:
-          tradeorder = new _tradeOrder["default"](req.body); //console.log(tradeorder);
-          _context10.next = 59;
-          return tradeorder.save();
         case 59:
+          tradeorder = new _tradeOrder["default"](req.body); //console.log(tradeorder);
+          _context10.next = 62;
+          return tradeorder.save();
+        case 62:
           res.status(201).send({
             message: 'order created',
             tradeorder: tradeorder
           });
-          _context10.next = 66;
+          _context10.next = 69;
           break;
-        case 62:
-          _context10.prev = 62;
-          _context10.t0 = _context10["catch"](1);
+        case 65:
+          _context10.prev = 65;
+          _context10.t0 = _context10["catch"](2);
           console.log(_context10.t0);
           res.status(500).send({
             message: 'an error occured'
           });
-        case 66:
+        case 69:
         case "end":
           return _context10.stop();
       }
-    }, _callee10, null, [[1, 62]]);
+    }, _callee10, null, [[2, 65]]);
   }));
   return function (_x19, _x20) {
     return _ref10.apply(this, arguments);

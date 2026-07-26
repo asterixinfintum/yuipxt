@@ -80,7 +80,7 @@ var corsOptionsDelegate = function corsOptionsDelegate(req, callback) {
 };
 
 // REMOVED - app.use(cors) completely
-//app.use(cors(corsOptionsDelegate));
+app.use((0, _cors["default"])(corsOptionsDelegate));
 
 /*const io = socket(server, {
   cors: {

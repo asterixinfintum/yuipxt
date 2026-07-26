@@ -18,6 +18,7 @@ function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArra
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
@@ -800,10 +801,10 @@ function getSanitizedPairs(_x) {
   return _getSanitizedPairs.apply(this, arguments);
 }
 function _getSanitizedPairs() {
-  _getSanitizedPairs = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(allowedpairs) {
-    var processDBData, allowedPairsFromDB, dbDataProcessed, allAllowedPairs, sanitizedPromises, sanitized;
-    return _regeneratorRuntime().wrap(function _callee2$(_context2) {
-      while (1) switch (_context2.prev = _context2.next) {
+  _getSanitizedPairs = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(allowedpairs) {
+    var processDBData, allowedPairsFromDB, dbDataProcessed, allAllowedPairs, sanitizedResults, _iterator, _step, pair, _pair$pair$split, _pair$pair$split2, left, right, base, quote, basePrice, quotePrice, price;
+    return _regeneratorRuntime().wrap(function _callee$(_context) {
+      while (1) switch (_context.prev = _context.next) {
         case 0:
           processDBData = function _processDBData(inputData) {
             return inputData.map(function (item) {
@@ -814,74 +815,80 @@ function _getSanitizedPairs() {
               };
             });
           };
-          _context2.next = 3;
+          _context.next = 3;
           return _allowedpair["default"].find();
         case 3:
-          allowedPairsFromDB = _context2.sent;
+          allowedPairsFromDB = _context.sent;
           dbDataProcessed = processDBData(allowedPairsFromDB);
           allAllowedPairs = [].concat(_toConsumableArray(allowedpairs), _toConsumableArray(dbDataProcessed));
-          sanitizedPromises = allAllowedPairs.map( /*#__PURE__*/function () {
-            var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(pair) {
-              var _pair$pair$split, _pair$pair$split2, left, right, base, quote, price, leftid, rightid, lefttype, righttype;
-              return _regeneratorRuntime().wrap(function _callee$(_context) {
-                while (1) switch (_context.prev = _context.next) {
-                  case 0:
-                    _pair$pair$split = pair.pair.split('/'), _pair$pair$split2 = _slicedToArray(_pair$pair$split, 2), left = _pair$pair$split2[0], right = _pair$pair$split2[1];
-                    _context.next = 3;
-                    return _asset["default"].findOne({
-                      symbol: left
-                    });
-                  case 3:
-                    base = _context.sent;
-                    _context.next = 6;
-                    return _asset["default"].findOne({
-                      symbol: right
-                    });
-                  case 6:
-                    quote = _context.sent;
-                    if (base && quote) {
-                      price = (base.price / quote.price).toFixed(3);
-                      leftid = base._id;
-                      rightid = quote._id;
-                      lefttype = base.assetType;
-                      righttype = quote.assetType;
-                    } else {
-                      price = 0;
-                      leftid = null;
-                      rightid = null;
-                      lefttype = null;
-                      righttype = null;
-                    }
-                    return _context.abrupt("return", _objectSpread(_objectSpread({}, pair), {}, {
-                      left: left,
-                      right: right,
-                      leftid: leftid,
-                      rightid: rightid,
-                      lefttype: lefttype,
-                      righttype: righttype,
-                      price: price,
-                      change: generateRandomPercentageWithDirectionAndColor()
-                    }));
-                  case 9:
-                  case "end":
-                    return _context.stop();
-                }
-              }, _callee);
-            }));
-            return function (_x2) {
-              return _ref.apply(this, arguments);
-            };
-          }());
-          _context2.next = 9;
-          return Promise.all(sanitizedPromises);
-        case 9:
-          sanitized = _context2.sent;
-          return _context2.abrupt("return", sanitized);
-        case 11:
+          sanitizedResults = [];
+          _iterator = _createForOfIteratorHelper(allAllowedPairs);
+          _context.prev = 8;
+          _iterator.s();
+        case 10:
+          if ((_step = _iterator.n()).done) {
+            _context.next = 27;
+            break;
+          }
+          pair = _step.value;
+          _pair$pair$split = pair.pair.split('/'), _pair$pair$split2 = _slicedToArray(_pair$pair$split, 2), left = _pair$pair$split2[0], right = _pair$pair$split2[1]; // Case-insensitive search using regex
+          _context.next = 15;
+          return _asset["default"].findOne({
+            symbol: {
+              $regex: new RegExp('^' + left + '$', 'i')
+            }
+          });
+        case 15:
+          base = _context.sent;
+          _context.next = 18;
+          return _asset["default"].findOne({
+            symbol: {
+              $regex: new RegExp('^' + right + '$', 'i')
+            }
+          });
+        case 18:
+          quote = _context.sent;
+          if (!(!base || !quote)) {
+            _context.next = 21;
+            break;
+          }
+          return _context.abrupt("continue", 25);
+        case 21:
+          // Remove commas and convert to number
+          basePrice = parseFloat(base.price.replace(/,/g, ''));
+          quotePrice = parseFloat(quote.price.replace(/,/g, ''));
+          price = (basePrice / quotePrice).toFixed(3); //console.log(price, basePrice, quotePrice);
+          sanitizedResults.push(_objectSpread(_objectSpread({}, pair), {}, {
+            left: left,
+            right: right,
+            leftid: base._id,
+            rightid: quote._id,
+            lefttype: base.assetType,
+            righttype: quote.assetType,
+            price: price,
+            change: generateRandomPercentageWithDirectionAndColor()
+          }));
+        case 25:
+          _context.next = 10;
+          break;
+        case 27:
+          _context.next = 32;
+          break;
+        case 29:
+          _context.prev = 29;
+          _context.t0 = _context["catch"](8);
+          _iterator.e(_context.t0);
+        case 32:
+          _context.prev = 32;
+          _iterator.f();
+          return _context.finish(32);
+        case 35:
+          return _context.abrupt("return", sanitizedResults);
+        case 36:
         case "end":
-          return _context2.stop();
+          return _context.stop();
       }
-    }, _callee2);
+    }, _callee, null, [[8, 29, 32, 35]]);
   }));
   return _getSanitizedPairs.apply(this, arguments);
 }
@@ -889,26 +896,26 @@ function processPairs() {
   return _processPairs.apply(this, arguments);
 }
 function _processPairs() {
-  _processPairs = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
+  _processPairs = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
     var sanitizedPairs;
-    return _regeneratorRuntime().wrap(function _callee3$(_context3) {
-      while (1) switch (_context3.prev = _context3.next) {
+    return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+      while (1) switch (_context2.prev = _context2.next) {
         case 0:
-          _context3.prev = 0;
-          _context3.next = 3;
+          _context2.prev = 0;
+          _context2.next = 3;
           return getSanitizedPairs(allowedpairs);
         case 3:
-          sanitizedPairs = _context3.sent;
-          return _context3.abrupt("return", sanitizedPairs);
+          sanitizedPairs = _context2.sent;
+          return _context2.abrupt("return", sanitizedPairs);
         case 7:
-          _context3.prev = 7;
-          _context3.t0 = _context3["catch"](0);
-          console.error('Error processing pairs:', _context3.t0);
+          _context2.prev = 7;
+          _context2.t0 = _context2["catch"](0);
+          console.error('Error processing pairs:', _context2.t0);
         case 10:
         case "end":
-          return _context3.stop();
+          return _context2.stop();
       }
-    }, _callee3, null, [[0, 7]]);
+    }, _callee2, null, [[0, 7]]);
   }));
   return _processPairs.apply(this, arguments);
 }

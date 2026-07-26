@@ -16,7 +16,7 @@ const allowedPairSchema = new Schema({
         required: true,
     },
 });
-
+ 
 const AllowedPair = mongoose.model('AllowedPair', allowedPairSchema);
 
 module.exports = AllowedPair;

@@ -322,11 +322,7 @@
                       </button>
                       <button
                         class="btn neon-pink"
-                        @click.stop="
-                          $router.push(
-                            `/trader?tradetype=margin&assetid=${asset.assetid}&assettype=${asset.assettype}&assetinitials=${asset.assetinitials}&assetname=${asset.assetname}&userid=${client._id}`
-                          )
-                        "
+                        @click.stop="navigateToTrader(asset)"
                         v-if="asset.coin !== 'USDT' && asset.coin !== 'USD'"
                       >
                         Trade
@@ -426,6 +422,12 @@ export default {
     },
   },
   methods: {
+    navigateToTrader(asset) {
+      console.log(asset)
+      this.$router.push(
+        `/trader?tradetype=margin&assetid=${asset.assetid}&assettype=${asset.assettype}&assetinitials=${asset.assetinitials}&assetname=${asset.assetname}&userid=${this.client._id}`
+      );
+    },
     togglehideemptybalances(val) {
       this.hideemptybalances = val;
     },

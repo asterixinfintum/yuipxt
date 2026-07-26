@@ -38,14 +38,14 @@ const server = http.createServer(app);
 // app.use(cors(corsOptionsDelegate));
 
 // REMOVED - cors from Socket.IO entirely
-/*const io = socket(server, {
+const io = socket(server, {
     cors: {  // COMPLETELY REMOVED
          origin: [`https://tradexapp.bsn.finance`, `https://tradexapp.bsn.finance`, `http://localhost:3000`],
          methods: ["GET", "POST"],
          allowedHeaders: ["Authorization"],
          credentials: true
      }
-});*/
+});
 
 let ioInstance;
 
@@ -198,3 +198,9 @@ mongoose.connect(`${process.env.DB}`, {
         return console.log(`server started on port here now ${PORT}`);
     });
 });
+
+//wert4563@gmail.com
+//12345678910
+
+// hhttp://localhost:3000/trader?tradetype=margin&assetid=6a5e620a7acb294819772dfb&assettype=commodity&assetinitials=PLATINUM&assetname=Platinum&userid=693b4eeaa86c8aeab2d98108
+
