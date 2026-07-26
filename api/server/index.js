@@ -32,7 +32,8 @@ const corsOptionsDelegate = (req, callback) => {
  }
 
 // REMOVED - app.use(cors) completely
-app.use(cors(corsOptionsDelegate));
+
+//app.use(cors(corsOptionsDelegate));
 
 /*const io = socket(server, {
   cors: {
