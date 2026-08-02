@@ -775,6 +775,10 @@ var allowedpairs = [{
   type: 'commodity',
   pairlabel: "TRADEGATE:OD7P",
   pair: "Soybean Oil/USD"
+}, {
+  type: 'commodity',
+  pairlabel: "SPARKS:LITHIUM",
+  pair: "Lithium/USD"
 }];
 function generateRandomPercentageWithDirectionAndColor() {
   // Generate a random percentage between 1 and 11

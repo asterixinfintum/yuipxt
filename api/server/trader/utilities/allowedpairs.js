@@ -939,6 +939,11 @@ const allowedpairs = [
         type: 'commodity',
         pairlabel: "TRADEGATE:OD7P",
         pair: "Soybean Oil/USD",
+    },
+    {
+        type: 'commodity',
+        pairlabel: "SPARKS:LITHIUM",
+        pair: "Lithium/USD",
     }
 ];
 
